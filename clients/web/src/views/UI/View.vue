@@ -24,4 +24,3 @@ export default defineComponent({
   background: var(--bg_100);
 }
 </style>
-
