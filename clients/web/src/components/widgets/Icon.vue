@@ -14,7 +14,7 @@ export default defineComponent({
     },
     fill: {
       type: String as PropType<string>,
-      default: "rgba(255, 255, 255, 0.5)",
+      default: "var(--text_100)",
     },
     size: {
       type: Number as PropType<number>,
@@ -31,8 +31,4 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped>
-path {
-  fill: var(--text_100);
-}
-</style>
+
