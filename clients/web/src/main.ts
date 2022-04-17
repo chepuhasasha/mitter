@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import { key, store } from "./store";
+import "./style/main.less";
 
-createApp(App).use(store).use(router).mount("#app");
+createApp(App).use(store, key).use(router).mount("#app");
+
