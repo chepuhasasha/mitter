@@ -20,7 +20,7 @@ export default defineComponent({
       default: "div",
     },
     gap: {
-      type: Number as PropType<number | null>,
+      type: String as PropType<string | null>,
       default: null,
     },
     padding: {
@@ -91,7 +91,7 @@ export default defineComponent({
       }
       // Indents
       if (props.gap) {
-        result.gap = props.gap + "px";
+        result.gap = props.gap;
       }
       if (props.padding) {
         result.padding = props.padding;
@@ -118,3 +118,4 @@ export default defineComponent({
   }
 }
 </style>
+
