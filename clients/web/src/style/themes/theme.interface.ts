@@ -39,4 +39,3 @@ export interface ITheme {
   critical_200: string;
   critical_300: string;
 }
-
