@@ -8,7 +8,7 @@ const dark: ITheme = {
   bg_300: "#1F212F",
   // -- INPUT
   input_bg: "#171822",
-  input_hover_bg: "#8785ff",
+  input_hover_bg: "#1F212F",
   input_active_bg: "#615EFF",
   input_border: "2px solid #171822",
   // -- BUTTON
@@ -45,3 +45,4 @@ const dark: ITheme = {
 };
 
 export default dark;
+
