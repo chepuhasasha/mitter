@@ -17,8 +17,8 @@ export default defineComponent({
       default: "var(--text_100)",
     },
     size: {
-      type: Number as PropType<number>,
-      default: 14,
+      type: String as PropType<string>,
+      default: "14px",
     },
     pointer: {
       type: Boolean as PropType<boolean>,
