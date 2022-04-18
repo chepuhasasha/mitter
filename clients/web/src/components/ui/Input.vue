@@ -69,9 +69,11 @@ export default defineComponent({
     outline: none;
     border: none;
     width: 100%;
+    color: var(--text_100);
+    font-size: 13px;
+    font-size: 14px;
+    font-weight: 300;
   }
-  color: var(--text_100);
-  font-size: 13px;
   background: var(--input_bg);
   border: var(--input_border);
   border-radius: 8px;
