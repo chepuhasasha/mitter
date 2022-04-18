@@ -3,17 +3,19 @@ import { ITheme } from "./theme.interface";
 const dark: ITheme = {
   // BACKGROUNDS
   // -- WRAPPERS
-  bg_100: "#171822",
-  bg_200: "#11121B",
-  bg_300: "#171822",
+  bg_100: "#11121B",
+  bg_200: "#171822",
+  bg_300: "#1F212F",
   // -- INPUT
   input_bg: "#171822",
   input_hover_bg: "#8785ff",
   input_active_bg: "#615EFF",
+  input_border: "2px solid #171822",
   // -- BUTTON
   btn_bg: "#171822",
   btn_hover_bg: "#8785ff",
   btn_active_bg: "#615EFF",
+  btn_border: "2px solid #171822",
   // -- SCROLL
   scroll: "#171822",
   scroll_thumb: "#615EFF",

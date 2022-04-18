@@ -8,10 +8,12 @@ export interface ITheme {
   input_bg: string;
   input_hover_bg: string;
   input_active_bg: string;
+  input_border: string;
   // -- BUTTON
   btn_bg: string;
   btn_hover_bg: string;
   btn_active_bg: string;
+  btn_border: string;
   // -- SCROLL
   scroll: string;
   scroll_thumb: string;
