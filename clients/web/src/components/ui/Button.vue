@@ -1,15 +1,14 @@
 <template lang="pug">
 flex.button(
   yAlign='center'
-  gap='10px'
   tag="button"
-  padding='10px'
   :class="[getStyleState, mode ? mode : null]"
   :title="title"
+  :style='style'
 )
   slot
-  Icon(v-if='icon && !load' pointer :icon='icon')
-  Loader(v-if='load' width='14px' mode='ring')
+  Icon(v-if='icon && !load' pointer :icon='icon' :size='style.fontSize')
+  Loader(v-if='load' :width='style.fontSize' mode='ring')
 </template>
 
 <script lang="ts">
@@ -48,6 +47,10 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: false,
     },
+    size: {
+      type: String as PropType<"xs" | "s" | "m" | "l" | "xl">,
+      default: "m",
+    },
   },
 
   setup(props) {
@@ -61,7 +64,52 @@ export default defineComponent({
       }
       return result;
     });
-    return { getStyleState };
+
+    const style = computed(() => {
+      const modes = {
+        xs: {
+          padding: "4px",
+          gap: "4px",
+          borderRadius: "4px",
+          fontSize: "10px",
+          lineHeight: "10px",
+        },
+        s: {
+          padding: "4px",
+          gap: "4px",
+          borderRadius: "4px",
+          fontSize: "12px",
+          lineHeight: "12px",
+        },
+        m: {
+          padding: "10px",
+          gap: "10px",
+          borderRadius: "6px",
+          fontSize: "14px",
+          lineHeight: "14px",
+        },
+        l: {
+          padding: "12px",
+          gap: "12px",
+          borderRadius: "10px",
+          fontSize: "16px",
+          lineHeight: "16px",
+        },
+        xl: {
+          padding: "20px",
+          gap: "20px",
+          borderRadius: "40px",
+          fontSize: "16px",
+          lineHeight: "16px",
+        },
+      };
+      if (Object.keys(modes).includes(props.size)) {
+        return modes[props.size];
+      } else {
+        return modes.m;
+      }
+    });
+    return { getStyleState, style };
   },
 });
 </script>
@@ -71,9 +119,6 @@ export default defineComponent({
   cursor: pointer;
   font-family: var(--font_200);
   border: var(--btn_border);
-  border-radius: 6px;
-  line-height: 14px;
-  font-size: 14px;
   font-weight: 500;
   background: var(--btn_bg);
   color: var(--text_200);
