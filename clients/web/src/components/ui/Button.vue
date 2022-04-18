@@ -136,12 +136,16 @@ export default defineComponent({
   &_active {
     background: var(--btn_active_bg);
     color: var(--text_100);
+    box-shadow: 0 0 30px -8px var(--btn_active_bg);
+    border-color: var(--btn_active_bg);
 
     &:hover {
       background: var(--btn_hover_bg);
+      border-color: var(--btn_hover_bg);
     }
   }
   &_disable {
+    cursor: not-allowed;
     opacity: 0.5;
 
     &:hover {
@@ -150,3 +154,4 @@ export default defineComponent({
   }
 }
 </style>
+
