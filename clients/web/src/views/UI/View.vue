@@ -1,16 +1,21 @@
 <template lang="pug">
-flex.ui(width='100%' height='100%' gap='20px' padding='20px' col)
+flex.ui(width='100%' height='100%' gap='20px' padding='20px' col xAlign='center')
   h3 Loader.vue
   flex.ui_group(gap='20px' padding='20px' yAlign='center')
     Loader
     Loader(mode='ring' width='40px')
   h3 Button.vue
   flex.ui_group(gap='20px' padding='20px')
-    Button Button
-    Button(active) Active
-    Button(disable) Disable
-    Button(icon='play') Icon
-    Button(load) Load
+    Button(title='Button') Button
+    Button(active title='Active') Active
+    Button(disable title='Disable') Disable
+    Button(icon='play' title='Icon') Icon
+    Button(load title='Load') Load
+  h3 Input.vue
+  flex.ui_group(gap='20px' padding='20px')
+    Input(title='Input' v-model='input' placeholder='input')
+    Input(icon='sandwich-bar' title='Input' v-model='input' placeholder='icon')
+    Input(load v-model='input' placeholder='load')
   h3 Icon.vue
   flex.ui_group(gap='10px' padding='20px' col)
     flex(
@@ -23,10 +28,11 @@ flex.ui(width='100%' height='100%' gap='20px' padding='20px' col)
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, reactive, toRefs } from "vue";
 import Loader from "@/components/widgets/Loader.vue";
 import Icon from "@/components/widgets/Icon.vue";
 import Button from "@/components/ui/Button.vue";
+import Input from "@/components/ui/Input.vue";
 import { icons } from "@/components/widgets/icons.ts";
 
 export default defineComponent({
@@ -35,12 +41,17 @@ export default defineComponent({
     Loader,
     Icon,
     Button,
+    Input,
   },
   setup() {
+    const state = reactive({
+      input: null,
+    });
     const getIcons = computed(() => icons.icons);
 
     return {
       getIcons,
+      ...toRefs(state),
     };
   },
 });
@@ -55,3 +66,7 @@ export default defineComponent({
   }
 }
 </style>
+
+function reactive(arg0: { input: null; }) { throw new Error("Function not
+implemented."); }
+

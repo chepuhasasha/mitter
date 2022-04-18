@@ -1,0 +1,86 @@
+<template lang="pug">
+flex.input(yAlign="center" padding='10px' gap='10px' :class='{input_focus: focus}')
+  Icon(v-if='icon' :icon='icon')
+  input(
+    :title="title"
+    v-bind="$attrs"
+    :value='modelValue'
+    @focus='focus=true'
+    @blur='focus=false'
+    @input='$emit("update:modelValue", $event.target.value)'
+  )
+  Icon(pointer icon='error' v-if="modelValue && !nobtn && !load" @click="clear")
+  Loader(v-if='load' width='14px' mode='ring')
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType, reactive, toRefs } from "vue";
+import { IconName } from "../widgets/icons";
+import Icon from "../widgets/Icon.vue";
+import Loader from "../widgets/Loader.vue";
+
+export default defineComponent({
+  components: {
+    Icon,
+    Loader,
+  },
+  props: {
+    modelValue: {
+      type: String as PropType<string | null>,
+      default: null,
+    },
+    title: {
+      type: String as PropType<string | null>,
+      default: null,
+    },
+    icon: {
+      type: String as PropType<IconName | null>,
+      default: null,
+    },
+    nobtn: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    load: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+  },
+
+  emits: ["update:modelValue"],
+
+  setup(props, { emit }) {
+    const state = reactive({
+      focus: false,
+    });
+    const clear = () => {
+      emit("update:modelValue", null);
+    };
+
+    return { clear, ...toRefs(state) };
+  },
+});
+</script>
+<style lang="less">
+.input {
+  input {
+    padding: 0;
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+  }
+  color: var(--text_100);
+  font-size: 13px;
+  background: var(--input_bg);
+  border: var(--input_border);
+  border-radius: 8px;
+  &:hover {
+    background: var(--input_hover_bg);
+  }
+  &_focus {
+    border-color: var(--input_active_bg);
+  }
+}
+</style>
+
