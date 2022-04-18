@@ -5,12 +5,17 @@ flex.ui(width='100%' height='100%' gap='20px' padding='20px' col xAlign='center'
     Loader
     Loader(mode='ring' width='40px')
   h3 Button.vue
-  flex.ui_group(gap='20px' padding='20px')
+  flex.ui_group(gap='20px' padding='20px' yAlign='center')
     Button(title='Button') Button
     Button(active title='Active') Active
     Button(disable title='Disable') Disable
     Button(icon='play' title='Icon') Icon
     Button(load title='Load') Load
+    Button(size='xs') xs
+    Button(size='s') s
+    Button(size='m') m
+    Button(size='l') l
+    Button(size='xl') xl
   h3 Input.vue
   flex.ui_group(gap='20px' padding='20px')
     Input(title='Input' v-model='input' placeholder='input')
@@ -69,4 +74,3 @@ export default defineComponent({
 
 function reactive(arg0: { input: null; }) { throw new Error("Function not
 implemented."); }
-
