@@ -1,7 +1,7 @@
 <template lang="pug">
 Page(xOverflow='auto')
   h3 Loader.vue
-  flex.ui_group(gap='20px' padding='20px' yAlign='center')
+  Block(gap='20px' padding='20px' yAlign='center')
     Loader
     Loader(mode='ring' width='40px')
   h3 Alert.vue
@@ -47,12 +47,14 @@ import Button from "@/components/ui/Button.vue";
 import Input from "@/components/ui/Input.vue";
 import { icons } from "@/components/widgets/icons.ts";
 import Page from "@/components/templates/Page.vue";
+import Block from "@/components/templates/Block.vue";
 
 export default defineComponent({
   name: "UI",
   components: {
     Alert,
     Page,
+    Block,
     Loader,
     Icon,
     Button,
