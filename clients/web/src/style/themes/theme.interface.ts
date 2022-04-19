@@ -33,11 +33,11 @@ export interface ITheme {
   ok_200: string;
   ok_300: string;
   // -- WARNING
-  warning_100: string;
-  warning_200: string;
-  warning_300: string;
+  warn_100: string;
+  warn_200: string;
+  warn_300: string;
   // -- CRITICAL
-  critical_100: string;
-  critical_200: string;
-  critical_300: string;
+  error_100: string;
+  error_200: string;
+  error_300: string;
 }

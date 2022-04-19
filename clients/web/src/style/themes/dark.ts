@@ -35,13 +35,13 @@ const dark: ITheme = {
   ok_200: "rgba(144,238,144, 0.5)",
   ok_300: "rgba(144,238,144, 0.2)",
   // -- WARNING
-  warning_100: "rgba(255,228,60, 1)",
-  warning_200: "rgba(255,228,60, 0.5)",
-  warning_300: "rgba(255,228,60, 0.2)",
+  warn_100: "rgba(255,228,60, 1)",
+  warn_200: "rgba(255,228,60, 0.5)",
+  warn_300: "rgba(255,228,60, 0.2)",
   // -- CRITICAL
-  critical_100: "rgba(255,79,15, 1)",
-  critical_200: "rgba(255,79,15, 0.5)",
-  critical_300: "rgba(255,79,15, 0.2)",
+  error_100: "rgba(255,79,15, 1)",
+  error_200: "rgba(255,79,15, 0.5)",
+  error_300: "rgba(255,79,15, 0.2)",
 };
 
 export default dark;
