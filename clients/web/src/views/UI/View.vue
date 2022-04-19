@@ -1,9 +1,15 @@
 <template lang="pug">
-Page
+Page(xOverflow='auto')
   h3 Loader.vue
   flex.ui_group(gap='20px' padding='20px' yAlign='center')
     Loader
     Loader(mode='ring' width='40px')
+  h3 Alert.vue
+  flex.ui_group(gap='20px' padding='20px' yAlign='center' col)
+    Alert(mode='info') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    Alert(mode='ok') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    Alert(mode='warn') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    Alert(mode='error') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
   h3 Button.vue
   flex.ui_group(gap='20px' padding='20px' yAlign='center')
     Button(title='Button') Button
@@ -35,6 +41,7 @@ Page
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from "vue";
 import Loader from "@/components/widgets/Loader.vue";
+import Alert from "@/components/ui/Alert.vue";
 import Icon from "@/components/widgets/Icon.vue";
 import Button from "@/components/ui/Button.vue";
 import Input from "@/components/ui/Input.vue";
@@ -44,6 +51,7 @@ import Page from "@/components/templates/Page.vue";
 export default defineComponent({
   name: "UI",
   components: {
+    Alert,
     Page,
     Loader,
     Icon,
@@ -76,4 +84,3 @@ export default defineComponent({
 
 function reactive(arg0: { input: null; }) { throw new Error("Function not
 implemented."); }
-
