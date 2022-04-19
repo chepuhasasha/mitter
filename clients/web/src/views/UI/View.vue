@@ -1,5 +1,5 @@
 <template lang="pug">
-flex.ui(width='100%' height='100%' gap='20px' padding='20px' col xAlign='center')
+Page
   h3 Loader.vue
   flex.ui_group(gap='20px' padding='20px' yAlign='center')
     Loader
@@ -39,10 +39,12 @@ import Icon from "@/components/widgets/Icon.vue";
 import Button from "@/components/ui/Button.vue";
 import Input from "@/components/ui/Input.vue";
 import { icons } from "@/components/widgets/icons.ts";
+import Page from "@/components/templates/Page.vue";
 
 export default defineComponent({
   name: "UI",
   components: {
+    Page,
     Loader,
     Icon,
     Button,
@@ -74,3 +76,4 @@ export default defineComponent({
 
 function reactive(arg0: { input: null; }) { throw new Error("Function not
 implemented."); }
+
