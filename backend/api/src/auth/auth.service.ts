@@ -56,7 +56,7 @@ export class AuthService {
 
     const device = this.findDevice(req, user.devices);
     if (device && device.trusted) {
-      user.devices = await this.updateDevices(device, user.devices, refresh);
+      user.devices = this.updateDevices(device, user.devices, refresh);
       user.save();
     } else if (!device) {
       user.devices.push({
@@ -72,7 +72,7 @@ export class AuthService {
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: refresh,
+      token: jwt,
     };
   }
 
@@ -100,14 +100,14 @@ export class AuthService {
         { id: user._id },
         { expiresIn: '1d' },
       );
-      user.devices = await this.updateDevices(device, user.devices, refresh);
+      user.devices = this.updateDevices(device, user.devices, refresh);
       res.cookie('jwt', refresh, { httpOnly: true });
       user.save();
       return { msg: 'sucsess' };
     }
   }
 
-  async updateDevices(device: Device, devices: Device[], token: string) {
+  updateDevices(device: Device, devices: Device[], token: string) {
     return devices.map((d) => {
       if (d === device) {
         const updated = d;
