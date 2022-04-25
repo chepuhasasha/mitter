@@ -1,5 +1,7 @@
 <template lang="pug">
-flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='{input_focus: focus}')
+flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='getClasses')
+  transition(name='slide-fade')
+    span.input_error_text(v-if='error') {{ error }}
   Icon(v-if='icon' :icon='icon')
   input(
     :title="title"
@@ -14,7 +16,7 @@ flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='{input
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, toRefs } from "vue";
+import { computed, defineComponent, PropType, reactive, toRefs } from "vue";
 import { IconName } from "../widgets/icons";
 import Icon from "../widgets/Icon.vue";
 import Loader from "../widgets/Loader.vue";
@@ -45,6 +47,10 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: false,
     },
+    error: {
+      type: String as PropType<string>,
+      default: "",
+    },
   },
 
   emits: ["update:modelValue"],
@@ -57,7 +63,12 @@ export default defineComponent({
       emit("update:modelValue", null);
     };
 
-    return { clear, ...toRefs(state) };
+    const getClasses = computed(() => ({
+      input_focus: state.focus,
+      input_error: props.error,
+    }));
+
+    return { clear, ...toRefs(state), getClasses };
   },
 });
 </script>
@@ -82,6 +93,18 @@ export default defineComponent({
   }
   &_focus {
     border-color: var(--input_active_bg);
+  }
+  &_error {
+    border-color: var(--error_100);
+    &_text {
+      position: absolute;
+      font-size: 12px;
+      top: -10px;
+      background: var(--error_100);
+      border-radius: 4px;
+      padding: 2px;
+      // color: var(--error_100);
+    }
   }
 }
 </style>
