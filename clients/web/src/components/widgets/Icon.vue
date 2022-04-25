@@ -1,5 +1,5 @@
 <template lang="pug">
-svg(viewBox='0 0 512 512' :width='size' :height='size' @click='click' :style='{cursor: pointer ? "pointer" : "default"}')
+svg(viewBox='0 0 512 512' :width='size' :height='size' @click='click' :style='getStyle')
   path(v-for='path in getPaths' :d='path' :fill='fill')
 </template>
 <script lang="ts">
@@ -27,7 +27,15 @@ export default defineComponent({
   },
   setup(props) {
     const getPaths = computed((): string[] => icons.getPaths(props.icon));
-    return { getPaths };
+    const getStyle = computed(() => ({
+      cursor: props.pointer ? "pointer" : "default",
+      maxWidth: props.size,
+      minWidth: props.size,
+      maxHeight: props.size,
+      minHeight: props.size,
+    }));
+    return { getPaths, getStyle };
   },
 });
 </script>
+
