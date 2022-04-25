@@ -102,8 +102,9 @@ export default defineComponent({
       font-size: 12px;
       top: -10px;
       background: var(--error_100);
-      border-radius: 4px;
-      padding: 2px;
+      border-radius: 6px;
+      padding: 2px 6px;
+      box-shadow: 0 0px 20px -5px var(--error_200);
       // color: var(--error_100);
     }
   }
