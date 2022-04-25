@@ -96,6 +96,7 @@ export default defineComponent({
   }
   &_error {
     border-color: var(--error_100);
+    animation: shake 0.5s;
     &_text {
       position: absolute;
       font-size: 12px;
