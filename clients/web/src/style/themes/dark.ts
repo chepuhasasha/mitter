@@ -45,4 +45,3 @@ const dark: ITheme = {
 };
 
 export default dark;
-
