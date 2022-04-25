@@ -1,5 +1,5 @@
 <template lang="pug">
-flex.input(yAlign="center" padding='10px' gap='10px' :class='{input_focus: focus}')
+flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='{input_focus: focus}')
   Icon(v-if='icon' :icon='icon')
   input(
     :title="title"
@@ -85,3 +85,4 @@ export default defineComponent({
   }
 }
 </style>
+
