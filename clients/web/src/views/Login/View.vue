@@ -7,29 +7,29 @@ Page(xAlign='center' yAlign='center' :col='false' gap='200px')
       transition(name='slide-fade')
         Input(
           v-if='!isLoginForm'
-          v-model='form.name'
+          v-model='inputs.name.value'
           placeholder='User name'
         )
       Input(
-        v-model='form.email'
+        v-model='inputs.email.value'
         placeholder='Email' 
         @blur='blur("email")'
         @update:modelValue='input("email")'
-        :error='errors.email'
+        :error='inputs.email.error'
       )
       Input(
         :type='passwordVisible ? "text" : "password"'
-        v-model='form.password'
+        v-model='inputs.password.value'
         placeholder='Password'
         @blur='blur("password")'
         @update:modelValue='input("password")'
-        :error='errors.password')
+        :error='inputs.password.error')
         Icon(:icon='passwordVisible ? "eye" : "eye_splash"' pointer @click='passwordVisible = !passwordVisible')
     flex(width='100%' xAlign='space-between')
       Button(@click='isLoginForm = !isLoginForm') {{ isLoginForm ? "Sign Up" : "Log In"}}
       transition(name='slide-fade')
         Button(
-          v-if='formIsValid'
+          v-if='formValidity'
           icon='right'
           active @click='send'
           :load='load')  {{ isLoginForm ? "Sign In" : "Create account"}}
@@ -45,6 +45,16 @@ import Icon from "@/components/widgets/Icon.vue";
 import Input from "@/components/ui/Input.vue";
 import Button from "@/components/ui/Button.vue";
 
+type InputsName = "email" | "password";
+type Inputs = {
+  [key in InputsName]: {
+    value: string;
+    regexp: RegExp;
+    touched: boolean;
+    error: string;
+  };
+};
+
 export default defineComponent({
   name: "Login",
   components: {
@@ -57,82 +67,82 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      touchedInputs: {
-        name: false,
-        email: false,
-        password: false,
-      },
+      inputs: {
+        name: {
+          value: "",
+          error: "",
+        },
+        email: {
+          value: "",
+          regexp:
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          touched: false,
+          error: "",
+        },
+        password: {
+          value: "",
+          regexp:
+            /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/,
+          touched: false,
+          error: "",
+        },
+      } as Inputs,
       passwordVisible: false,
       isLoginForm: true,
       load: false,
-      form: {
-        name: "",
-        email: "",
-        password: "",
-      } as { [key: string]: string },
-      errors: {
-        name: "",
-        email: "",
-        password: "",
-      } as { [key: string]: null | string },
     });
 
-    const validationMap = {
-      email: {
-        r: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        msg: "invalid email.",
-      },
-      password: {
-        r: /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/,
-        msg: "A-z 0-9",
-      },
-    } as {
-      [key in "email" | "password"]: { r: RegExp; msg: string };
+    const blur = (name: InputsName) => {
+      state.inputs[name].touched = true;
+      input(name);
     };
 
-    const validation = (name: "email" | "password") => {
-      const test = validationMap[name].r.test(state.form[name]);
-      if (state.form[name] && !test) {
-        state.errors[name] = validationMap[name].msg;
-      } else {
-        state.errors[name] = "";
-      }
-      return test;
-    };
+    const input = (name: InputsName) => {
+      if (state.inputs[name].touched) {
+        switch (name) {
+          case "email":
+            state.inputs.email.error = checkEmail.value ? "" : "invalid email.";
+            break;
+          case "password":
+            state.inputs.password.error = checkPassword.value ? "" : "A-z 0-9";
+            break;
 
-    const blur = (name: "email" | "password") => {
-      state.touchedInputs[name] = true;
-      validation(name);
-    };
-
-    const input = (name: "email" | "password") => {
-      if (state.touchedInputs[name]) {
-        validation(name);
+          default:
+            break;
+        }
       }
     };
 
-    const formIsValid = computed(() => {
-      if (state.isLoginForm) {
-        return (
-          !state.errors.email &&
-          !state.errors.password &&
-          state.form.email &&
-          state.form.password
-        );
-      }
+    const checkName = computed(() => {
+      return true;
+    });
+    const checkEmail = computed(() => {
       return (
-        !state.errors.email &&
-        !state.errors.password &&
-        state.form.email &&
-        state.form.password
+        state.inputs.email.regexp.test(state.inputs.email.value) &&
+        state.inputs.email.touched &&
+        state.inputs.email.value
+      );
+    });
+    const checkPassword = computed(() => {
+      return (
+        state.inputs.password.regexp.test(state.inputs.password.value) &&
+        state.inputs.password.touched &&
+        state.inputs.password.value
       );
     });
 
+    const formValidity = computed(() => {
+      if (state.isLoginForm) {
+        return checkEmail.value && checkPassword.value;
+      }
+      return checkEmail.value && checkPassword.value && checkName.value;
+    });
+
     const login = () => {
-      console.log("login", state.form);
+      console.log("login");
     };
     const signup = () => {
-      console.log("sign up", state.form);
+      console.log("sign up");
     };
 
     const send = () => {
@@ -146,10 +156,12 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
+      checkName,
+      checkEmail,
+      checkPassword,
+      formValidity,
       blur,
       input,
-      validation,
-      formIsValid,
       send,
       login,
       signup,
