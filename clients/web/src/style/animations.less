@@ -25,3 +25,11 @@
   90% { transform: rotate(0deg); }
   100% { transform: rotate(-1deg); }
 }
+
+@keyframes flicker {
+  0% { box-shadow: inset -10px -10px 30px -10px var(--btn_hover_bg); }
+  25% { box-shadow: inset 10px -10px 30px -20px var(--btn_hover_bg); }
+  50% { box-shadow: inset 10px 10px 30px -10px var(--btn_hover_bg); }
+  75% { box-shadow: inset -10px 10px 30px -20px var(--btn_hover_bg); }
+  100% { box-shadow: inset -10px -10px 30px -10px var(--btn_hover_bg); }
+}
