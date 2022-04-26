@@ -119,9 +119,9 @@ export default defineComponent({
   cursor: pointer;
   font-family: var(--font_200);
   border: var(--btn_border);
-  font-weight: 500;
+  font-weight: 700;
   background: var(--btn_bg);
-  color: var(--text_200);
+  color: var(--text_100);
 
   &:hover {
     color: var(--text_100);
@@ -155,3 +155,4 @@ export default defineComponent({
   }
 }
 </style>
+
