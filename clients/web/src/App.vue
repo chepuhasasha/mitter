@@ -21,8 +21,14 @@ watch(
   }
 );
 
+const resize = (e: { target: Window }) => {
+  store.dispatch("SCREEN_MODE", e.target.innerWidth);
+};
+
 onMounted(() => {
   store.dispatch("GET_THEME", "dark");
+  store.dispatch("SCREEN_MODE", window.innerHeight);
+  window.addEventListener("resize", resize);
   document.head.appendChild(style.value);
   if (style.value) {
     style.value.innerText = theme.value;
