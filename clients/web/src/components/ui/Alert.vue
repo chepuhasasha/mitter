@@ -38,8 +38,8 @@ export default defineComponent({
 <style lang="less">
 .alert {
   border-radius: 10px;
-  font-weight: 400;
-  font-family: var(--font_100);
+  font-weight: 200;
+  font-family: var(--font_200);
   border: 1px dashed;
 }
 </style>

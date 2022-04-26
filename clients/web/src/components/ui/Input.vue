@@ -11,9 +11,9 @@ flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='getCla
     @blur='focus=false'
     @input='$emit("update:modelValue", $event.target.value)'
   )
+  slot
   Icon(pointer icon='error' v-if="modelValue && !nobtn && !load" @click="clear")
   Loader(v-if='load' width='14px' mode='ring')
-  slot
 </template>
 
 <script lang="ts">

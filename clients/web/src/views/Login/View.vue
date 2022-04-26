@@ -1,14 +1,18 @@
 <template lang="pug">
-Page(xAlign='center' yAlign='center' :col='false' gap='200px')
-  Logo(size='m' text)
-  Block(padding='20px' gap='20px' width='400px')
-    h3 {{ isLoginForm ? "Login" : "Sing Up" }}
+Page(xAlign='center' yAlign='center' gap='40px')
+  //- Logo(size='m')
+  Block(padding='40px' gap='40px' width='400px')
+    h2 {{ isLoginForm ? "Login" : "Sing Up" }}
+    Alert(v-if='error' mode='error' width='100%') {{ error }}
     flex(width='100%' col gap='10px')
       transition(name='slide-fade')
         Input(
           v-if='!isLoginForm'
           v-model='inputs.name.value'
           placeholder='User name'
+          @blur='blur("name")'
+          @update:modelValue='input("name")'
+          :error='inputs.name.error'
         )
       Input(
         v-model='inputs.email.value'
@@ -44,8 +48,9 @@ import Logo from "@/components/widgets/Logo.vue";
 import Icon from "@/components/widgets/Icon.vue";
 import Input from "@/components/ui/Input.vue";
 import Button from "@/components/ui/Button.vue";
+import Alert from "@/components/ui/Alert.vue";
 
-type InputsName = "email" | "password";
+type InputsName = "email" | "password" | "name";
 type Inputs = {
   [key in InputsName]: {
     value: string;
@@ -64,12 +69,14 @@ export default defineComponent({
     Icon,
     Input,
     Button,
+    Alert,
   },
   setup() {
     const state = reactive({
       inputs: {
         name: {
           value: "",
+          touched: false,
           error: "",
         },
         email: {
@@ -90,6 +97,7 @@ export default defineComponent({
       passwordVisible: false,
       isLoginForm: true,
       load: false,
+      error: "",
     });
 
     const blur = (name: InputsName) => {
@@ -105,6 +113,9 @@ export default defineComponent({
             break;
           case "password":
             state.inputs.password.error = checkPassword.value ? "" : "A-z 0-9";
+            break;
+          case "name":
+            state.inputs.name.error = "test";
             break;
 
           default:
