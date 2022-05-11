@@ -1,5 +1,6 @@
 <template lang="pug">
 .ui
+  Code(edit lang='json' v-model='code')
   Loader
   Loader(mode='ring')
   Flex(gap='20px')
@@ -23,6 +24,7 @@ export default defineComponent({
   setup() {
     const state = reactive({
       input: null,
+      code: '{\n  "test": 123\n}',
     });
     const getIcons = computed(() => icons);
 
