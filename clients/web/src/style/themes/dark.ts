@@ -14,7 +14,7 @@ const dark: ITheme = {
   // -- BUTTON
   btn_bg: "#11121B",
   btn_active: "#615EFF",
-  btn_active_bg: "rgba(97, 93, 255, 0.2)",
+  btn_active_bg: "#22224B",
   // -- SCROLL
   scroll: "#171822",
   scroll_thumb: "#615EFF",
@@ -44,3 +44,4 @@ const dark: ITheme = {
 };
 
 export default dark;
+
