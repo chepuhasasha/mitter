@@ -29,7 +29,7 @@ export const theme: Module<IThemeState, State> = {
     },
   },
   actions: {
-    GET_THEME({ commit }, name: ThemeName) {
+    setTheme({ commit }, name: ThemeName) {
       commit("SET_THEME", name);
     },
   },

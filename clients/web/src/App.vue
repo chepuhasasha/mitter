@@ -22,12 +22,13 @@ watch(
 );
 
 const resize = (e: { target: Window }) => {
-  store.dispatch("SCREEN_MODE", e.target.innerWidth);
+  store.dispatch("setScreenMode", e.target.innerWidth);
 };
 
 onMounted(() => {
-  store.dispatch("GET_THEME", "dark");
-  store.dispatch("SCREEN_MODE", window.innerHeight);
+  store.dispatch("setTheme", "dark");
+  store.dispatch("setLang", navigator.language.substring(0, 2));
+  store.dispatch("setScreenMode", window.innerHeight);
   window.addEventListener("resize", resize);
   document.head.appendChild(style.value);
   if (style.value) {

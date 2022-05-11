@@ -16,7 +16,7 @@ Page(xAlign='center' gap='40px')
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import Page from "@/components/templates/Page.vue";
 import Block from "@/components/templates/Block.vue";
 import Logo from "@/components/widgets/Logo.vue";
@@ -24,6 +24,7 @@ import Icon from "@/components/widgets/Icon.vue";
 import Input from "@/components/ui/Input.vue";
 import Button from "@/components/ui/Button.vue";
 import Alert from "@/components/ui/Alert.vue";
+import localization from "./localization.json";
 
 export default defineComponent({
   name: "Home",
@@ -35,6 +36,13 @@ export default defineComponent({
     Input,
     Button,
     Alert,
+  },
+
+  setup() {
+    const content = ref(localization);
+    return {
+      content,
+    };
   },
 });
 </script>

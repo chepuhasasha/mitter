@@ -1,20 +1,33 @@
 <template lang="pug">
 Page(xAlign='center' gap='40px')
   h1 Log
-  h1 {{ screenMode }}
+  h1 {{ SCREEN_MODE }}
+  h1 {{ LANG }}
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { PageInit } from "@/compositions/PageInit";
+import { defineComponent, reactive, toRefs } from "vue";
+import { BasePage } from "@/compositions/basePage.composition";
+import Page from "@/components/templates/Page.vue";
 
 export default defineComponent({
   name: "Log",
+  components: {
+    Page,
+  },
   setup() {
-    const { store, screenMode } = PageInit();
+    const state = reactive({
+      layout: {
+        decktop: {},
+        mobile: {},
+      },
+    });
+    const { store, SCREEN_MODE, LANG } = BasePage();
     return {
+      ...toRefs(state),
       store,
-      screenMode,
+      SCREEN_MODE,
+      LANG,
     };
   },
 });

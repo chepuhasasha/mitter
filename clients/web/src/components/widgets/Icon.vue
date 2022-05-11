@@ -4,7 +4,7 @@ svg(viewBox='0 0 512 512' :width='size' :height='size' @click='click' :style='ge
 </template>
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import { IconName, icons } from "./icons";
+import { IconName, icons } from "../interfaces/icons";
 export default defineComponent({
   name: "Icon",
   props: {
@@ -26,7 +26,13 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const getPaths = computed((): string[] => icons.getPaths(props.icon));
+    const getPaths = computed((): string[] => {
+      if (icons[props.icon]) {
+        return icons[props.icon];
+      } else {
+        return icons.error;
+      }
+    });
     const getStyle = computed(() => ({
       cursor: props.pointer ? "pointer" : "default",
       maxWidth: props.size,

@@ -45,7 +45,7 @@ import Alert from "@/components/ui/Alert.vue";
 import Icon from "@/components/widgets/Icon.vue";
 import Button from "@/components/ui/Button.vue";
 import Input from "@/components/ui/Input.vue";
-import { icons } from "@/components/widgets/icons.ts";
+import { icons } from "@/components/interfaces/icons";
 import Page from "@/components/templates/Page.vue";
 import Block from "@/components/templates/Block.vue";
 
@@ -64,7 +64,7 @@ export default defineComponent({
     const state = reactive({
       input: null,
     });
-    const getIcons = computed(() => icons.icons);
+    const getIcons = computed(() => icons);
 
     return {
       getIcons,

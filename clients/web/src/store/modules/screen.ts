@@ -22,7 +22,7 @@ export const screen: Module<IScreenState, State> = {
     },
   },
   actions: {
-    SCREEN_MODE({ commit }, size: number) {
+    setScreenMode({ commit }, size: number) {
       commit("SET_SCREEN_MODE", size);
     },
   },

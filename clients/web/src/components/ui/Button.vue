@@ -13,7 +13,7 @@ flex.button(
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import { IconName } from "../widgets/icons";
+import { IconName } from "../interfaces/icons";
 import Icon from "../widgets/Icon.vue";
 import Loader from "../widgets/Loader.vue";
 

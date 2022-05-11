@@ -18,7 +18,7 @@ flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='getCla
 
 <script lang="ts">
 import { computed, defineComponent, PropType, reactive, toRefs } from "vue";
-import { IconName } from "../widgets/icons";
+import { IconName } from "../interfaces/icons";
 import Icon from "../widgets/Icon.vue";
 import Loader from "../widgets/Loader.vue";
 
