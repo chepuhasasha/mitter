@@ -11,7 +11,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 export default defineComponent({
-  name: "Icon",
+  name: "Utilization",
   props: {
     name: {
       type: String as PropType<string>,
