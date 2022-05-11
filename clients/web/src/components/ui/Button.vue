@@ -1,14 +1,8 @@
 <template lang="pug">
-flex.button(
-  yAlign='center'
-  tag="button"
-  :class="[getStyleState, mode ? mode : null]"
-  :title="title"
-  :style='style'
-)
+button.button(:class="mode")
   slot
-  Icon(v-if='icon && !load' pointer :icon='icon' :size='style.fontSize')
-  Loader(v-if='load' :width='style.fontSize' mode='ring')
+  Icon(v-if='icon && !load' pointer :icon='icon')
+  Loader(v-if='load' width='14px' mode='ring')
 </template>
 
 <script lang="ts">
@@ -23,14 +17,6 @@ export default defineComponent({
     Loader,
   },
   props: {
-    mode: {
-      type: String as PropType<string | null>,
-      default: null,
-    },
-    title: {
-      type: String as PropType<string | null>,
-      default: null,
-    },
     icon: {
       type: String as PropType<IconName | null>,
       default: null,
@@ -43,115 +29,64 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: false,
     },
-    disable: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
     size: {
-      type: String as PropType<"xs" | "s" | "m" | "l" | "xl">,
-      default: "m",
+      type: String as PropType<"s" | "m" | "l">,
+      default: "s",
     },
   },
 
   setup(props) {
-    const getStyleState = computed(() => {
-      let result = null;
-      if (props.active) {
-        result = "button_active";
-      }
-      if (props.disable) {
-        result = "button_disable";
-      }
-      return result;
-    });
-
-    const style = computed(() => {
-      const modes = {
-        xs: {
-          padding: "4px",
-          gap: "4px",
-          borderRadius: "4px",
-          fontSize: "10px",
-          lineHeight: "10px",
-        },
-        s: {
-          padding: "4px",
-          gap: "4px",
-          borderRadius: "4px",
-          fontSize: "12px",
-          lineHeight: "12px",
-        },
-        m: {
-          padding: "10px",
-          gap: "10px",
-          borderRadius: "6px",
-          fontSize: "14px",
-          lineHeight: "14px",
-        },
-        l: {
-          padding: "12px",
-          gap: "12px",
-          borderRadius: "10px",
-          fontSize: "16px",
-          lineHeight: "16px",
-        },
-        xl: {
-          padding: "20px",
-          gap: "20px",
-          borderRadius: "40px",
-          fontSize: "16px",
-          lineHeight: "16px",
-        },
-      };
-      if (Object.keys(modes).includes(props.size)) {
-        return modes[props.size];
-      } else {
-        return modes.m;
-      }
-    });
-    return { getStyleState, style };
+    const mode = computed(() => ({
+      button_active: props.active,
+      [`button_${props.size}`]: true,
+    }));
+    return { mode };
   },
 });
 </script>
 
 <style lang="less">
 .button {
+  outline: none;
+  display: flex;
+  align-items: center;
+
   cursor: pointer;
-  font-family: var(--font_200);
-  border: var(--btn_border);
-  font-weight: 700;
   background: var(--btn_bg);
-  color: var(--text_100);
-
+  border: 2px solid var(--btn_bg);
+  color: var(--text_200);
   &:hover {
+    background: var(--btn_active);
     color: var(--text_100);
-    background: var(--btn_hover_bg);
   }
-
   &:focus {
-    outline: none;
-    border: 2px solid var(--btn_hover_bg);
+    border: 2px solid var(--btn_active);
+    color: var(--btn_active);
   }
-
   &_active {
+    color: var(--btn_active);
     background: var(--btn_active_bg);
-    color: var(--text_100);
-    animation: flicker infinite 10s ease-in-out;
-    // box-shadow: 0 0 30px -8px var(--btn_active_bg);
-    border-color: var(--btn_active_bg);
-
-    &:hover {
-      background: var(--btn_hover_bg);
-      border-color: var(--btn_hover_bg);
-    }
   }
-  &_disable {
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    &:hover {
-      background: var(--btn_bg);
-    }
+  &_s {
+    padding: 10px;
+    gap: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 10px;
+  }
+  &_m {
+    padding: 14px;
+    gap: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 12px;
+  }
+  &_l {
+    padding: 40px;
+    gap: 10px;
+    border-radius: 40px;
+    font-size: 16px;
+    line-height: 14px;
   }
 }
 </style>

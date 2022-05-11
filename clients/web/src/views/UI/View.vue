@@ -1,65 +1,27 @@
 <template lang="pug">
-Page(xOverflow='auto')
-  h3 Loader.vue
-  Block(gap='20px' padding='20px' yAlign='center')
-    Loader
-    Loader(mode='ring' width='40px')
-  h3 Alert.vue
-  flex.ui_group(gap='20px' padding='20px' yAlign='center' col)
-    Alert(mode='info') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    Alert(mode='ok') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    Alert(mode='warn') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    Alert(mode='error') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-  h3 Button.vue
-  flex.ui_group(gap='20px' padding='20px' yAlign='center')
-    Button(title='Button') Button
-    Button(active title='Active') Active
-    Button(disable title='Disable') Disable
-    Button(icon='play' title='Icon') Icon
-    Button(load title='Load') Load
-    Button(size='xs') xs
-    Button(size='s') s
-    Button(size='m') m
-    Button(size='l') l
-    Button(size='xl') xl
-  h3 Input.vue
-  flex.ui_group(gap='20px' padding='20px')
-    Input(title='Input' v-model='input' placeholder='input')
-    Input(icon='sandwich-bar' title='Input' v-model='input' placeholder='icon')
-    Input(load v-model='input' placeholder='load')
-  h3 Icon.vue
-  flex.ui_group(gap='10px' padding='20px' col)
-    flex(
-      v-for='(i,icon) in getIcons'
-      gap='10px'
-      yAlign='center')
-      Icon(:icon='icon' :size='14')
-      span {{ icon }}
-
+.ui
+  h3 Icon
+  Flex(v-for='(icon, name) in getIcons' padding='5px' gap='5px' yAlign='center')
+    Icon(:icon='name')
+    span {{ name }}
+  h3 Loader
+  Loader
+  Loader(mode='ring')
+  h3 Button
+  Flex(gap='20px')
+    Button(icon='error') ldldldl
+    Button(active) active
+    Button(size='m') active
+    Button(icon='error' size='l' load active) SEND
+  Input(v-model='input')
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from "vue";
-import Loader from "@/components/widgets/Loader.vue";
-import Alert from "@/components/ui/Alert.vue";
-import Icon from "@/components/widgets/Icon.vue";
-import Button from "@/components/ui/Button.vue";
-import Input from "@/components/ui/Input.vue";
 import { icons } from "@/components/interfaces/icons";
-import Page from "@/components/templates/Page.vue";
-import Block from "@/components/templates/Block.vue";
 
 export default defineComponent({
   name: "UI",
-  components: {
-    Alert,
-    Page,
-    Block,
-    Loader,
-    Icon,
-    Button,
-    Input,
-  },
   setup() {
     const state = reactive({
       input: null,
@@ -76,13 +38,8 @@ export default defineComponent({
 
 <style lang="less">
 .ui {
-  background: var(--bg_100);
-  &_group {
-    border: 2px dashed var(--bg_300);
-    border-radius: 20px;
-  }
+  background: var(--bg_200);
+  width: 100vw;
+  height: 100vh;
 }
 </style>
-
-function reactive(arg0: { input: null; }) { throw new Error("Function not
-implemented."); }

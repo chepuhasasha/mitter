@@ -11,9 +11,8 @@ export interface ITheme {
   input_border: string;
   // -- BUTTON
   btn_bg: string;
-  btn_hover_bg: string;
+  btn_active: string;
   btn_active_bg: string;
-  btn_border: string;
   // -- SCROLL
   scroll: string;
   scroll_thumb: string;

@@ -1,5 +1,5 @@
 <template lang="pug">
-flex.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='getClasses')
+.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='getClasses')
   transition(name='slide-fade')
     span.input_error_text(v-if='error') {{ error }}
   Icon(v-if='icon' :icon='icon')
@@ -75,6 +75,9 @@ export default defineComponent({
 </script>
 <style lang="less">
 .input {
+  display: flex;
+  width: max-content;
+  padding: 10px;
   input {
     padding: 0;
     background: none;

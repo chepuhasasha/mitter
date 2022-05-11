@@ -13,9 +13,8 @@ const dark: ITheme = {
   input_border: "2px solid #171822",
   // -- BUTTON
   btn_bg: "#11121B",
-  btn_hover_bg: "#8785ff",
-  btn_active_bg: "#615EFF",
-  btn_border: "2px solid #171822",
+  btn_active: "#615EFF",
+  btn_active_bg: "rgba(97, 93, 255, 0.2)",
   // -- SCROLL
   scroll: "#171822",
   scroll_thumb: "#615EFF",
