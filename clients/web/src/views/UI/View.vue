@@ -1,9 +1,5 @@
 <template lang="pug">
 .ui
-  h3 Icon
-  Flex(v-for='(icon, name) in getIcons' padding='5px' gap='5px' yAlign='center')
-    Icon(:icon='name')
-    span {{ name }}
   h3 Loader
   Loader
   Loader(mode='ring')
@@ -14,6 +10,10 @@
     Button(size='m') active
     Button(icon='error' size='l' load active) SEND
   Input(v-model='input')
+  h3 Icon
+  Flex(v-for='(icon, name) in getIcons' padding='5px' gap='5px' yAlign='center')
+    Icon(:icon='name')
+    span {{ name }}
 </template>
 
 <script lang="ts">
@@ -43,3 +43,4 @@ export default defineComponent({
   height: 100vh;
 }
 </style>
+

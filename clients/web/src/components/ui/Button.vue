@@ -58,6 +58,7 @@ export default defineComponent({
   &:hover {
     background: var(--btn_active);
     color: var(--text_100);
+    border: 2px solid var(--btn_active);
   }
   &:focus {
     border: 2px solid var(--btn_active);
@@ -66,6 +67,7 @@ export default defineComponent({
   &_active {
     color: var(--btn_active);
     background: var(--btn_active_bg);
+    border: 2px solid var(--btn_active_bg);
   }
   &_s {
     padding: 10px;
@@ -90,3 +92,4 @@ export default defineComponent({
   }
 }
 </style>
+
