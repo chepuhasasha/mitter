@@ -153,7 +153,7 @@ export default defineComponent({
   padding: 10px;
   display: flex;
   width: 100%;
-  height: 500px;
+  height: 100%;
   background: var(--bg_100);
   border-radius: 10px;
   overflow-y: auto;
@@ -172,4 +172,3 @@ textarea {
   padding-left: 70px;
 }
 </style>
-

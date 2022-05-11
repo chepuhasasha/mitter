@@ -1,5 +1,5 @@
 <template lang="pug">
-.input(yAlign="center" padding='10px' gap='10px' width='100%' :class='getClasses')
+.input(v-y-align v-padding='10' v-gap='10' width='100%' :class='getClasses')
   transition(name='slide-fade')
     span.input_error_text(v-if='error') {{ error }}
   Icon(v-if='icon' :icon='icon')
@@ -114,3 +114,4 @@ export default defineComponent({
   }
 }
 </style>
+

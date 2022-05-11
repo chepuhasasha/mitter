@@ -1,5 +1,8 @@
 <template lang="pug">
-button.button(:class="mode")
+button.button(
+  v-flex
+  v-y-align
+  :class="mode")
   slot
   Icon(v-if='icon && !load' pointer :icon='icon')
   Loader(v-if='load' width='14px' mode='ring')
@@ -48,9 +51,6 @@ export default defineComponent({
 <style lang="less">
 .button {
   outline: none;
-  display: flex;
-  align-items: center;
-
   cursor: pointer;
   background: var(--btn_bg);
   border: 2px solid var(--btn_bg);
@@ -92,3 +92,4 @@ export default defineComponent({
   }
 }
 </style>
+

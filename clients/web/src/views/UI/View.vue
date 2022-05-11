@@ -1,17 +1,18 @@
 <template lang="pug">
 .ui
-  Code(edit lang='json' v-model='code')
-  Loader
-  Loader(mode='ring')
-  Flex(gap='20px')
-    Button(icon='error') ldldldl
-    Button(active) active
-    Button(size='m') active
-    Button(icon='error' size='l' load active) SEND
-  Input(v-model='input')
-  Utilization(test='dkdkdk')
-  Flex(gap='10px')
-    Icon(:icon='name' v-for='(icon, name) in getIcons')
+  Button(size='l' active icon='right') SEND
+  //- Code(edit lang='json' v-model='code')
+  //- Loader
+  //- Loader(mode='ring')
+  //- Flex(gap='20px')
+  //-   Button(icon='error') ldldldl
+  //-   Button(active) active
+  //-   Button(size='m') active
+  //-   Button(icon='error' size='l' load active) SEND
+  //- Input(v-model='input')
+  //- Utilization(test='dkdkdk')
+  //- Flex(gap='10px')
+  //-   Icon(:icon='name' v-for='(icon, name) in getIcons')
   
 </template>
 
@@ -47,4 +48,3 @@ export default defineComponent({
   flex-direction: column;
 }
 </style>
-

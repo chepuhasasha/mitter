@@ -3,14 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import { key, store } from "./store";
 import "./style/main.less";
-import wrappers from "./components/wrappers";
+import flex from "./plagins/flex";
 import ui from "./components/ui";
-import widgets from "./components/widgets";
 
-createApp(App)
-  .use(store, key)
-  .use(router)
-  .use(wrappers)
-  .use(widgets)
-  .use(ui)
-  .mount("#app");
+createApp(App).use(store, key).use(router).use(flex).use(ui).mount("#app");
+
