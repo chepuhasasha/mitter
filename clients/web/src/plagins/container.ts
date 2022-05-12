@@ -1,10 +1,14 @@
 import { App } from "vue";
-
+// TODO: [Container plagin] Add grid dirs
 export default {
   install(Vue: App): void {
     Vue.directive("flex", (el: HTMLElement) => {
       el.style.display = "flex";
       el.style.flexDirection = "row";
+      el.style.position = "relative";
+    });
+    Vue.directive("grid", (el: HTMLElement) => {
+      el.style.display = "grid";
       el.style.position = "relative";
     });
     Vue.directive("col", (el: HTMLElement) => {
@@ -22,8 +26,36 @@ export default {
     Vue.directive("width", (el: HTMLElement, binding) => {
       el.style.width = binding.value;
     });
+    Vue.directive("min-width", (el: HTMLElement, binding) => {
+      if (binding.value) {
+        el.style.minWidth = binding.value;
+        return;
+      }
+      el.style.minWidth = el.style.width;
+    });
+    Vue.directive("max-width", (el: HTMLElement, binding) => {
+      if (binding.value) {
+        el.style.maxWidth = binding.value;
+        return;
+      }
+      el.style.maxWidth = el.style.width;
+    });
     Vue.directive("height", (el: HTMLElement, binding) => {
       el.style.height = binding.value;
+    });
+    Vue.directive("min-height", (el: HTMLElement, binding) => {
+      if (binding.value) {
+        el.style.minHeight = binding.value;
+        return;
+      }
+      el.style.minHeight = el.style.height;
+    });
+    Vue.directive("max-height", (el: HTMLElement, binding) => {
+      if (binding.value) {
+        el.style.maxHeight = binding.value;
+        return;
+      }
+      el.style.maxHeight = el.style.height;
     });
     Vue.directive("y-overflow", (el: HTMLElement, binding) => {
       el.style.overflowY = binding.value;
