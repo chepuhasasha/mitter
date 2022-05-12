@@ -4,14 +4,14 @@
     size='l'
     active
     icon='right'
-    v-lang='"en"'
+    v-lang='LANG'
     )
     |$en SEND
     |$ru ОТПРАВИТЬ
-    span(v-lang='"en"')
+    span(v-lang='LANG')
       |$en tets
       |$ru тест
-      span(v-lang='"en"')
+      span(v-lang='LANG')
         |$en tets2
         |$ru тест2
   Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
@@ -32,10 +32,12 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from "vue";
 import { icons } from "@/components/interfaces/icons";
+import { BasePage } from "@/compositions/basePage";
 
 export default defineComponent({
   name: "UI",
   setup() {
+    const { LANG, SCREEN_MODE, STORE } = BasePage();
     const state = reactive({
       input: null,
       code: '{\n  "test": 123\n}',
@@ -45,6 +47,9 @@ export default defineComponent({
     return {
       getIcons,
       ...toRefs(state),
+      LANG,
+      SCREEN_MODE,
+      STORE,
     };
   },
 });
@@ -61,3 +66,4 @@ export default defineComponent({
   flex-direction: column;
 }
 </style>
+
