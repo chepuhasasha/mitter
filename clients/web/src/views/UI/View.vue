@@ -73,4 +73,3 @@ export default defineComponent({
   // flex-direction: column;
 }
 </style>
-

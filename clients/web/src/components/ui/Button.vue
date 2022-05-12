@@ -4,6 +4,7 @@ button.button(
   v-flex
   v-y-align
   v-width='"max-content"'
+  v-height='"max-content"'
   :class="mode")
   slot
   Icon(v-if='icon && !load' pointer :icon='icon')

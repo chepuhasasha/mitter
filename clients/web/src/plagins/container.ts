@@ -1,5 +1,5 @@
 import { App } from "vue";
-// TODO: [Container plagin] Add grid dirs
+// COMPLETE: [Container plagin]
 export default {
   install(Vue: App): void {
     Vue.directive("flex", (el: HTMLElement) => {
@@ -95,4 +95,3 @@ export default {
     });
   },
 };
-
