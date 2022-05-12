@@ -2,6 +2,7 @@
 button.button(
   v-flex
   v-y-align
+  v-width='"max-content"'
   :class="mode")
   slot
   Icon(v-if='icon && !load' pointer :icon='icon')
@@ -11,12 +12,10 @@ button.button(
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 import { IconName } from "../interfaces/icons";
-import Icon from "../widgets/Icon.vue";
 import Loader from "../widgets/Loader.vue";
 
 export default defineComponent({
   components: {
-    Icon,
     Loader,
   },
   props: {
@@ -92,4 +91,3 @@ export default defineComponent({
   }
 }
 </style>
-

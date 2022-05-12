@@ -1,4 +1,13 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  &::-webkit-scrollbar {
+    background: var(--scroll);
+    width: 4px;
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--scroll_thumb);
+  }
 }

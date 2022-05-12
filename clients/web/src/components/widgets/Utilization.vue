@@ -1,5 +1,5 @@
 <template lang="pug">
-.utilization
+.utilization(v-flex v-col v-width='"100%"' v-height='"max-content"' v-gap='2')
   .utilization_name {{ name }}
   .utilization_val(:style='{color: getStyle.background }') {{ max / 100 * value }}%
   .utilization_scale
@@ -61,11 +61,6 @@ export default defineComponent({
 </script>
 <style lang="less">
 .utilization {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 2px;
-
   &_name {
     font-size: 14px;
   }

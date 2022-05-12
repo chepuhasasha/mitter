@@ -5,6 +5,7 @@ export default {
     Vue.directive("flex", (el: HTMLElement) => {
       el.style.display = "flex";
       el.style.flexDirection = "row";
+      el.style.position = "relative";
     });
     Vue.directive("col", (el: HTMLElement) => {
       el.style.flexDirection = "column";
@@ -23,6 +24,12 @@ export default {
     });
     Vue.directive("height", (el: HTMLElement, binding) => {
       el.style.height = binding.value;
+    });
+    Vue.directive("y-overflow", (el: HTMLElement, binding) => {
+      el.style.overflowY = binding.value;
+    });
+    Vue.directive("x-overflow", (el: HTMLElement, binding) => {
+      el.style.overflowX = binding.value;
     });
     Vue.directive("x-align", (el: HTMLElement, binding) => {
       switch (el.style.flexDirection) {
@@ -46,4 +53,3 @@ export default {
     });
   },
 };
-

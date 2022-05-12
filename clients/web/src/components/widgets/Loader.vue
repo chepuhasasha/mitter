@@ -1,18 +1,18 @@
 <template lang="pug">
-.pulse(v-if='mode === "pulse"' :style='{width, height: width}')
+.pulse(v-if='mode === "pulse"' :style='getSize')
   .pulse_circle
   .pulse_circle
   .pulse_circle
-.ring(v-if='mode === "ring"' :style='{width, height: width}')
+.ring(v-if='mode === "ring"' :style='getSize')
 
 
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 export default defineComponent({
   name: "Loader",
   props: {
-    width: {
+    size: {
       type: String as PropType<string>,
       default: "100px",
     },
@@ -20,6 +20,17 @@ export default defineComponent({
       type: String as PropType<string>,
       default: "pulse",
     },
+  },
+  setup(props) {
+    const getSize = computed(() => ({
+      width: props.size,
+      minWidth: props.size,
+      maxWidth: props.size,
+      height: props.size,
+      minHeight: props.size,
+      maxHeight: props.size,
+    }));
+    return { getSize };
   },
 });
 </script>

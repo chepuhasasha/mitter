@@ -1,7 +1,15 @@
 <template lang="pug">
-.code.highlight(mode='c1' width='fill' col padding='10px' :gap='10' yOverflow='auto')
-  pre(v-html='hljsParse')
-  textarea(v-if='edit' :value='modelValue ? modelValue : value' @input='input')
+.code.highlight(
+  v-flex
+  v-col
+  v-padding='10'
+  v-gap='10'
+  v-height='"100%"'
+  v-width='"100%"'
+  v-y-overflow='"auto"'
+  )
+  pre(v-html='hljsParse' ref='pre')
+  textarea(v-if='edit' :value='modelValue ? modelValue : value' @input='input' ref='textarea')
 </template>
 
 <script lang="ts">
@@ -10,6 +18,7 @@ import {
   onMounted,
   PropType,
   reactive,
+  ref,
   toRefs,
   watch,
 } from "vue";
@@ -43,10 +52,19 @@ export default defineComponent({
       lineErr: null as number | null,
     });
 
+    const pre = ref<HTMLElement | null>(null);
+    const textarea = ref<HTMLElement | null>(null);
+
     const input = (e: { target: { value: string } }) => {
       const value = e.target.value;
       emit("update:modelValue", value);
       emit("update", value);
+    };
+
+    const resize = () => {
+      if (textarea.value && pre.value) {
+        textarea.value.style.height = `${pre.value.offsetHeight + 20}px`;
+      }
     };
 
     const check = (data: string): null | number => {
@@ -116,6 +134,7 @@ export default defineComponent({
       (n) => {
         if (n) {
           highlight(n);
+          resize();
         }
       }
     );
@@ -124,6 +143,7 @@ export default defineComponent({
       (n) => {
         if (n) {
           highlight(n);
+          resize();
         }
       }
     );
@@ -143,20 +163,23 @@ export default defineComponent({
     return {
       input,
       ...toRefs(state),
+      pre,
+      textarea,
+      resize,
     };
   },
 });
 </script>
 <style lang="less" scoped>
 .code {
-  position: relative;
-  padding: 10px;
-  display: flex;
-  width: 100%;
-  height: 100%;
+  // position: relative;
+  // padding: 10px;
+  // display: flex;
+  // width: 100%;
+  // height: 100%;
   background: var(--bg_100);
   border-radius: 10px;
-  overflow-y: auto;
+  // overflow-y: auto;
 }
 pre {
   background: none;
@@ -170,5 +193,6 @@ textarea {
   caret-color: white;
   padding: 10px;
   padding-left: 70px;
+  // height: max-content;
 }
 </style>

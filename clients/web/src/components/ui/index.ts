@@ -8,4 +8,3 @@ export default {
     Vue.component("Input", InputVue);
   },
 };
-

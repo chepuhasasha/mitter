@@ -1,18 +1,20 @@
 <template lang="pug">
 .ui
-  Button(size='l' active icon='right') SEND
-  //- Code(edit lang='json' v-model='code')
-  //- Loader
-  //- Loader(mode='ring')
+  Button(size='l' active icon='right' v-lang='"en"') 
+    |$en SEND
+    |$ru ОТПРАВИТЬ
+  Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
+  Loader(size='40px')
+  Loader(size='40px' mode='ring')
   //- Flex(gap='20px')
   //-   Button(icon='error') ldldldl
   //-   Button(active) active
   //-   Button(size='m') active
   //-   Button(icon='error' size='l' load active) SEND
   //- Input(v-model='input')
-  //- Utilization(test='dkdkdk')
+  Utilization(edit)
   //- Flex(gap='10px')
-  //-   Icon(:icon='name' v-for='(icon, name) in getIcons')
+  //- Icon(:icon='name' v-for='(icon, name) in getIcons')
   
 </template>
 
