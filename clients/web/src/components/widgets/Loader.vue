@@ -1,3 +1,4 @@
+// COMPLETE: Loader.vue
 <template lang="pug">
 .pulse(v-if='mode === "pulse"' :style='getSize')
   .pulse_circle
@@ -93,3 +94,4 @@ export default defineComponent({
   }
 }
 </style>
+

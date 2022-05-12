@@ -1,3 +1,4 @@
+// COMPLETE: Icon.vue
 <template lang="pug">
 svg(viewBox='0 0 512 512' :width='size' :height='size' @click='click' :style='getStyle')
   path(v-for='path in getPaths' :d='path' :fill='fill')
@@ -44,3 +45,4 @@ export default defineComponent({
   },
 });
 </script>
+

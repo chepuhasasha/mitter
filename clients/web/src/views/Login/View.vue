@@ -1,3 +1,4 @@
+// TODO: Refactor Login/View.vue
 <template lang="pug">
 Page(xAlign='center' yAlign='center' gap='40px')
   //- Logo(size='m')
@@ -181,3 +182,4 @@ export default defineComponent({
 });
 </script>
 <style lang="less"></style>
+

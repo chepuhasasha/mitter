@@ -1,3 +1,4 @@
+// TODO: Refactor Input.vue
 <template lang="pug">
 .input(v-y-align v-padding='10' v-gap='10' width='100%' :class='getClasses')
   transition(name='slide-fade')
@@ -114,3 +115,4 @@ export default defineComponent({
   }
 }
 </style>
+

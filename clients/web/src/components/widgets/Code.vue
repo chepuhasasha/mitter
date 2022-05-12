@@ -1,3 +1,4 @@
+// TODO: Refactor Code.vue
 <template lang="pug">
 .code.highlight(
   v-flex
@@ -196,3 +197,4 @@ textarea {
   // height: max-content;
 }
 </style>
+

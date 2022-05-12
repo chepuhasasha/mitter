@@ -1,3 +1,4 @@
+// TODO: Refactor Utilization.vue
 <template lang="pug">
 .utilization(v-flex v-col v-width='"100%"' v-height='"max-content"' v-gap='2')
   .utilization_name {{ name }}
@@ -84,3 +85,4 @@ export default defineComponent({
   }
 }
 </style>
+
