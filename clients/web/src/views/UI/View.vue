@@ -4,11 +4,16 @@
     size='l'
     active
     icon='right'
-    :load='true'
     v-lang='"en"'
     )
     |$en SEND
     |$ru ОТПРАВИТЬ
+    span(v-lang='"en"')
+      |$en tets
+      |$ru тест
+      span(v-lang='"en"')
+        |$en tets2
+        |$ru тест2
   Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
   Loader(size='40px')
   Loader(size='40px' mode='ring')
@@ -56,4 +61,3 @@ export default defineComponent({
   flex-direction: column;
 }
 </style>
-
