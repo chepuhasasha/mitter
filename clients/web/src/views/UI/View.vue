@@ -1,6 +1,12 @@
 <template lang="pug">
 .ui
-  Button(size='l' active icon='right' v-lang='"en"') 
+  Button(
+    size='l'
+    active
+    icon='right'
+    :load='true'
+    v-lang='"en"'
+    )
     |$en SEND
     |$ru ОТПРАВИТЬ
   Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
@@ -50,3 +56,4 @@ export default defineComponent({
   flex-direction: column;
 }
 </style>
+

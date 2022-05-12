@@ -7,7 +7,7 @@ button.button(
   :class="mode")
   slot
   Icon(v-if='icon && !load' pointer :icon='icon')
-  Loader(v-if='load' width='14px' mode='ring')
+  Loader(v-if='load' size='14px' mode='ring')
 </template>
 
 <script lang="ts">
@@ -92,3 +92,4 @@ export default defineComponent({
   }
 }
 </style>
+

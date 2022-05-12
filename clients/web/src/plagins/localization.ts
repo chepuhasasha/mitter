@@ -7,9 +7,12 @@ export default {
       content.shift();
       content.forEach((text) => {
         if (text.slice(0, 2) === binding.value) {
-          el.innerText = text.slice(2);
+          if (el.childNodes[1]) {
+            el.childNodes[1].textContent = text.slice(2);
+          }
         }
       });
     });
   },
 };
+
