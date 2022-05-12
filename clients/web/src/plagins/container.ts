@@ -11,6 +11,12 @@ export default {
       el.style.display = "grid";
       el.style.position = "relative";
     });
+    Vue.directive("grid-cols-template", (el: HTMLElement, binding) => {
+      el.style.gridTemplateColumns = binding.value;
+    });
+    Vue.directive("grid-rows-template", (el: HTMLElement, binding) => {
+      el.style.gridTemplateRows = binding.value;
+    });
     Vue.directive("col", (el: HTMLElement) => {
       el.style.flexDirection = "column";
     });
@@ -18,7 +24,11 @@ export default {
       el.style.gap = `${binding.value}px`;
     });
     Vue.directive("padding", (el: HTMLElement, binding) => {
-      el.style.padding = `${binding.value}px`;
+      if (typeof binding.value === "number") {
+        el.style.padding = `${binding.value}px`;
+        return;
+      }
+      el.style.padding = binding.value;
     });
     Vue.directive("area", (el: HTMLElement, binding) => {
       el.style.gridArea = binding.value;
@@ -85,3 +95,4 @@ export default {
     });
   },
 };
+

@@ -1,5 +1,12 @@
 <template lang="pug">
-.ui
+.ui(
+  v-grid
+  v-grid-rows-template='"100px repeat(10, 1fr)"'
+  v-width='"100vw"'
+  v-height='"100vh"'
+  v-gap='20'
+  v-padding='20'
+  )
   Button(
     size='l'
     active
@@ -58,12 +65,12 @@ export default defineComponent({
 <style lang="less">
 .ui {
   background: var(--bg_200);
-  width: 100vw;
-  height: 100vh;
-  gap: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  // width: 100vw;
+  // height: 100vh;
+  // gap: 20px;
+  // padding: 20px;
+  // display: flex;
+  // flex-direction: column;
 }
 </style>
 
