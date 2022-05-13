@@ -1,84 +1,54 @@
-// TODO: Refactor Input.vue
+// COMPLETE: [Input.vue]
 <template lang="pug">
-.input(v-y-align v-padding='10' v-gap='10' width='100%' :class='getClasses')
+.input(
+  v-flex
+  v-y-align
+  v-padding='10'
+  v-gap='10'
+  width='100%'
+  :class='getClasses'
+  )
   transition(name='slide-fade')
     span.input_error_text(v-if='error') {{ error }}
-  Icon(v-if='icon' :icon='icon')
+  Icon(v-if='icon && !load' :icon='icon')
+  Loader(v-if='load' size='14px' mode='ring')
   input(
     :title="title"
     v-bind="$attrs"
     :value='modelValue'
     @focus='focus=true'
     @blur='focus=false'
-    @input='$emit("update:modelValue", $event.target.value)'
+    @input='$emit("update:modelValue", $event.target?.value)'
   )
+  Icon(pointer icon='cross' size='10px' v-if="modelValue && !nobtn" @click='$emit("update:modelValue", null)')
   slot
-  Icon(pointer icon='error' v-if="modelValue && !nobtn && !load" @click="clear")
-  Loader(v-if='load' width='14px' mode='ring')
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType, reactive, toRefs } from "vue";
-import { IconName } from "../interfaces/icons";
-import Icon from "../widgets/Icon.vue";
-import Loader from "../widgets/Loader.vue";
+<script lang="ts" setup>
+import { computed, ref } from "vue";
+import type { PropType } from "vue";
+import type { IconName } from "../interfaces/icons";
 
-export default defineComponent({
-  components: {
-    Icon,
-    Loader,
-  },
-  props: {
-    modelValue: {
-      type: String as PropType<string | null>,
-      default: null,
-    },
-    title: {
-      type: String as PropType<string | null>,
-      default: null,
-    },
-    icon: {
-      type: String as PropType<IconName | null>,
-      default: null,
-    },
-    nobtn: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    load: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    error: {
-      type: String as PropType<string>,
-      default: "",
-    },
-  },
-
-  emits: ["update:modelValue"],
-
-  setup(props, { emit }) {
-    const state = reactive({
-      focus: false,
-    });
-    const clear = () => {
-      emit("update:modelValue", null);
-    };
-
-    const getClasses = computed(() => ({
-      input_focus: state.focus,
-      input_error: props.error,
-    }));
-
-    return { clear, ...toRefs(state), getClasses };
-  },
+const props = defineProps({
+  modelValue: { type: String as PropType<string | null>, default: null },
+  title: { type: String as PropType<string>, default: "" },
+  icon: { type: String as PropType<IconName | null>, default: null },
+  nobtn: { type: Boolean as PropType<boolean>, default: false },
+  load: { type: Boolean as PropType<boolean>, default: false },
+  error: { type: String as PropType<string>, default: "" },
 });
+const focus = ref(false);
+const getClasses = computed(() => ({
+  input_focus: focus.value,
+  input_error: props.error,
+}));
 </script>
 <style lang="less">
 .input {
-  display: flex;
-  width: max-content;
-  padding: 10px;
+  background: var(--input_bg);
+  border: var(--input_border);
+  border-radius: 8px;
+
   input {
     padding: 0;
     background: none;
@@ -90,9 +60,6 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 300;
   }
-  background: var(--input_bg);
-  border: var(--input_border);
-  border-radius: 8px;
   &:hover {
     background: var(--input_hover_bg);
   }
@@ -110,7 +77,6 @@ export default defineComponent({
       border-radius: 6px;
       padding: 2px 6px;
       box-shadow: 0 0px 20px -5px var(--error_200);
-      // color: var(--error_100);
     }
   }
 }

@@ -15,15 +15,12 @@
     )
     |$en SEND
     |$ru ОТПРАВИТЬ
-  Button(
-    size='l'
-    active
-    icon='right'
-    load
-    v-lang='LANG'
-    )
-    |$en SEND
-    |$ru ОТПРАВИТЬ
+  Input(v-model='input')
+  Input(v-model='input' load)
+  Input(v-model='input' icon='user')
+  Input(v-model='input' icon='user')
+    Icon(icon='ok')
+  Input(v-model='input' icon='user' error='ERROR!')
   Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
   Loader(size='40px')
   Loader(size='40px' mode='ring')
@@ -32,7 +29,6 @@
   //-   Button(active) active
   //-   Button(size='m') active
   //-   Button(icon='error' size='l' load active) SEND
-  //- Input(v-model='input')
   Utilization(edit)
   //- Flex(gap='10px')
   //- Icon(:icon='name' v-for='(icon, name) in getIcons')
