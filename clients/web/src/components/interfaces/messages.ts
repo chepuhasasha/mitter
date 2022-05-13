@@ -38,7 +38,7 @@ export const messageTypes: MessageTypes = {
     color: "",
   },
   utilization: {
-    icon: "metric",
+    icon: "pie",
     color: "",
   },
   markdown: {
@@ -46,3 +46,4 @@ export const messageTypes: MessageTypes = {
     color: "",
   },
 };
+
