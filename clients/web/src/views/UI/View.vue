@@ -6,6 +6,7 @@
   v-height='"100vh"'
   v-gap='20'
   v-padding='20'
+  v-y-overflow='"auto"'
   )
   Button(
     size='l'
@@ -21,17 +22,11 @@
   Input(v-model='input' icon='user')
     Icon(icon='ok')
   Input(v-model='input' icon='user' error='ERROR!')
-  Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
+  Code(edit lang='json' v-model='code' v-width='"300px"' v-height='"300px"')
   Loader(size='40px')
   Loader(size='40px' mode='ring')
-  //- Flex(gap='20px')
-  //-   Button(icon='error') ldldldl
-  //-   Button(active) active
-  //-   Button(size='m') active
-  //-   Button(icon='error' size='l' load active) SEND
   Utilization(edit)
-  //- Flex(gap='10px')
-  //- Icon(:icon='name' v-for='(icon, name) in getIcons')
+  Icon(:icon='name' v-for='(icon, name) in getIcons')
   
 </template>
 
