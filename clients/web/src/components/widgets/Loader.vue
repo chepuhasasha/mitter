@@ -8,32 +8,22 @@
 
 
 </template>
-<script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
-export default defineComponent({
-  name: "Loader",
-  props: {
-    size: {
-      type: String as PropType<string>,
-      default: "100px",
-    },
-    mode: {
-      type: String as PropType<string>,
-      default: "pulse",
-    },
-  },
-  setup(props) {
-    const getSize = computed(() => ({
-      width: props.size,
-      minWidth: props.size,
-      maxWidth: props.size,
-      height: props.size,
-      minHeight: props.size,
-      maxHeight: props.size,
-    }));
-    return { getSize };
-  },
+<script lang="ts" setup>
+import { computed, PropType } from "vue";
+
+const props = defineProps({
+  size: { type: String as PropType<string>, default: "100px" },
+  mode: { type: String as PropType<string>, default: "pulse" },
 });
+
+const getSize = computed(() => ({
+  width: props.size,
+  minWidth: props.size,
+  maxWidth: props.size,
+  height: props.size,
+  minHeight: props.size,
+  maxHeight: props.size,
+}));
 </script>
 <style lang="less" scoped>
 .pulse {
