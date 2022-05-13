@@ -1,4 +1,4 @@
-// COMPLETE: Localization plagin
+// COMPLETE: [Localization plagin]
 import { App } from "vue";
 
 export default {
