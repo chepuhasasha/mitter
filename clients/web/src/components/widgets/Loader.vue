@@ -1,4 +1,4 @@
-// COMPLETE: Loader.vue
+// COMPLETE: [Loader.vue]
 <template lang="pug">
 .pulse(v-if='mode === "pulse"' :style='getSize')
   .pulse_circle
@@ -9,7 +9,8 @@
 
 </template>
 <script lang="ts" setup>
-import { computed, PropType } from "vue";
+import type { PropType } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   size: { type: String as PropType<string>, default: "100px" },

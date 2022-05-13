@@ -5,10 +5,12 @@ svg(viewBox='0 0 512 512' :width='size' :height='size' @click='click' :style='ge
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
-import { IconName, icons } from "../interfaces/icons";
+import type { PropType } from "vue";
+import type { IconName } from "../interfaces/icons";
+import { icons } from "../interfaces/icons";
 
 const props = defineProps({
-  icon: { type: String, default: "error" },
+  icon: { type: String as PropType<IconName>, default: "error" },
   fill: { type: String, default: "var(--text_100)" },
   size: { type: String, default: "14px" },
   pointer: { type: Boolean, default: false },

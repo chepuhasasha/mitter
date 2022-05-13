@@ -13,7 +13,7 @@ button.button(
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { IconName } from "../interfaces/icons";
+import type { IconName } from "../interfaces/icons";
 
 const props = defineProps<{
   icon?: IconName;
