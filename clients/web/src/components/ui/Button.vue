@@ -1,4 +1,4 @@
-// TODO: Refactor Button.vue
+// COMPLETE: [Button.vue]
 <template lang="pug">
 button.button(
   v-flex
@@ -11,42 +11,21 @@ button.button(
   Loader(v-if='load' size='14px' mode='ring')
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import { IconName } from "../interfaces/icons";
-import Loader from "../widgets/Loader.vue";
 
-export default defineComponent({
-  components: {
-    Loader,
-  },
-  props: {
-    icon: {
-      type: String as PropType<IconName | null>,
-      default: null,
-    },
-    active: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    load: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    size: {
-      type: String as PropType<"s" | "m" | "l">,
-      default: "s",
-    },
-  },
+const props = defineProps<{
+  icon?: IconName;
+  load?: boolean;
+  active: boolean;
+  size: "s" | "m" | "l";
+}>();
 
-  setup(props) {
-    const mode = computed(() => ({
-      button_active: props.active,
-      [`button_${props.size}`]: true,
-    }));
-    return { mode };
-  },
-});
+const mode = computed(() => ({
+  button_active: props.active,
+  [`button_${props.size}`]: true,
+}));
 </script>
 
 <style lang="less">

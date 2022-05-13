@@ -15,12 +15,15 @@
     )
     |$en SEND
     |$ru ОТПРАВИТЬ
-    span(v-lang='LANG')
-      |$en tets
-      |$ru тест
-      span(v-lang='LANG')
-        |$en tets2
-        |$ru тест2
+  Button(
+    size='l'
+    active
+    icon='right'
+    load
+    v-lang='LANG'
+    )
+    |$en SEND
+    |$ru ОТПРАВИТЬ
   Code(edit lang='markdown' v-model='code' v-width='"300px"' v-height='"300px"')
   Loader(size='40px')
   Loader(size='40px' mode='ring')
