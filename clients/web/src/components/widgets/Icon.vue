@@ -3,45 +3,29 @@
 svg(viewBox='0 0 512 512' :width='size' :height='size' @click='click' :style='getStyle')
   path(v-for='path in getPaths' :d='path' :fill='fill')
 </template>
-<script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import { IconName, icons } from "../interfaces/icons";
-export default defineComponent({
-  name: "Icon",
-  props: {
-    icon: {
-      type: String as PropType<IconName>,
-      default: "error",
-    },
-    fill: {
-      type: String as PropType<string>,
-      default: "var(--text_100)",
-    },
-    size: {
-      type: String as PropType<string>,
-      default: "14px",
-    },
-    pointer: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-  },
-  setup(props) {
-    const getPaths = computed((): string[] => {
-      if (icons[props.icon]) {
-        return icons[props.icon];
-      } else {
-        return icons.error;
-      }
-    });
-    const getStyle = computed(() => ({
-      cursor: props.pointer ? "pointer" : "default",
-      maxWidth: props.size,
-      minWidth: props.size,
-      maxHeight: props.size,
-      minHeight: props.size,
-    }));
-    return { getPaths, getStyle };
-  },
+
+const props = defineProps({
+  icon: { type: String, default: "error" },
+  fill: { type: String, default: "var(--text_100)" },
+  size: { type: String, default: "14px" },
+  pointer: { type: Boolean, default: false },
 });
+
+const getPaths = computed((): string[] => {
+  if (icons[props.icon]) {
+    return icons[props.icon];
+  } else {
+    return icons.error;
+  }
+});
+const getStyle = computed(() => ({
+  cursor: props.pointer ? "pointer" : "default",
+  maxWidth: props.size,
+  minWidth: props.size,
+  maxHeight: props.size,
+  minHeight: props.size,
+}));
 </script>
