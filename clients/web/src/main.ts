@@ -4,7 +4,7 @@ import router from "./router";
 import { key, store } from "./store";
 import "./style/main.less";
 import container from "./plagins/container";
-import { VLang } from "@chepuhasasha/v-lang";
+import VLang from "@chepuhasasha/v-lang";
 import ui from "./components/ui";
 import widgets from "./components/widgets";
 

@@ -10,8 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@chepuhasasha/v-lang": "^0.0.5",
-    "@sashachepuha/vue-localization-plagin": "^0.1.5",
+    "@chepuhasasha/v-lang": "^1.1.0",
     "core-js": "^3.6.5",
     "highlight.js": "^11.5.1",
     "vue": "^3.0.0",

@@ -12,9 +12,9 @@
     size='l'
     active
     icon='right'
-    v-lang='LANG'
+    v-lang
     )
-    |$en SEND
+    |$uk SEND
     |$ru ОТПРАВИТЬ
   Input(v-model='input')
   Input(v-model='input' load)
