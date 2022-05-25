@@ -16,6 +16,7 @@
     )
     |$uk SEND
     |$ru ОТПРАВИТЬ
+  div(v-lang='"some key"') $some key текст $en text
   Input(v-model='input')
   Input(v-model='input' load)
   Input(v-model='input' icon='user')

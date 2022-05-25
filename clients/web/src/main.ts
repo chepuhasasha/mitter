@@ -7,6 +7,7 @@ import VContainer from "@chepuhasasha/v-container";
 import VLang from "@chepuhasasha/v-lang";
 import ui from "./components/ui";
 import widgets from "./components/widgets";
+import wrappers from "./components/wrappers";
 
 createApp(App)
   .use(store, key)
@@ -14,6 +15,6 @@ createApp(App)
   .use(VContainer)
   .use(VLang)
   .use(widgets)
+  .use(wrappers)
   .use(ui)
   .mount("#app");
-

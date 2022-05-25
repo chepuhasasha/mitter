@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@chepuhasasha/v-container": "^0.0.1",
-    "@chepuhasasha/v-lang": "^1.1.0",
+    "@chepuhasasha/v-lang": "^1.3.0",
     "core-js": "^3.6.5",
     "highlight.js": "^11.5.1",
     "vue": "^3.0.0",
