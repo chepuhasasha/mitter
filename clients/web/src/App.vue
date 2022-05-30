@@ -13,7 +13,7 @@ const resize = (e: { target: Window }) => {
 
 onMounted(() => {
   store.dispatch("setTheme", "dark");
-  store.dispatch("setScreenMode", window.innerHeight);
+  store.dispatch("setScreenMode", window.innerWidth);
   window.addEventListener("resize", resize);
 });
 </script>

@@ -58,6 +58,7 @@ const isOpen = ref(false);
     flex-direction: column;
     gap: 20px;
     height: 100%;
+    width: 100%;
     &_messages {
       display: flex;
       flex-direction: column;

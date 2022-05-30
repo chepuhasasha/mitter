@@ -1,5 +1,5 @@
 <template lang="pug">
-transition(name='slide-fade')
+transition(name='modal-fade')
   .modal(v-if="modelValue")
     .modal_wrapper
       .modal_header
@@ -35,6 +35,7 @@ const isIn = ref(false);
   align-items: center;
   width: 100vw;
   height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
   &_header {
     display: flex;
     width: 100%;
@@ -58,14 +59,37 @@ const isIn = ref(false);
     border-radius: 10px;
     width: max-content;
     height: max-content;
-    max-width: 80vw;
-    max-height: 80vh;
+    max-width: 90vw;
+    max-height: 90vh;
     box-shadow: 0 0 50px 0px rgba(0, 0, 0, 0.5);
   }
   &_body {
     display: flex;
     max-width: 100%;
     max-height: 100%;
+  }
+}
+
+.modal-fade {
+  &-enter-active {
+    transition: all 0.5s ease-out;
+    .modal_wrapper {
+      transition: all 0.5s ease-out;
+    }
+  }
+  &-leave-active {
+    transition: all 0.5s ease-out;
+    .modal_wrapper {
+      transition: all 0.5s ease-out;
+    }
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    .modal_wrapper {
+      transform: translateX(-100px);
+    }
   }
 }
 </style>

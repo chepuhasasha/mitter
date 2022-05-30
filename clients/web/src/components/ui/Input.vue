@@ -8,8 +8,8 @@
     :title="title"
     v-bind="$attrs"
     :value='modelValue'
-    @focus='focus=true'
-    @blur='focus=false'
+    @focus='onfocus(true)'
+    @blur='onfocus(false)'
     @input='$emit("update:modelValue", $event.target?.value)'
   )
   Icon(pointer icon='cross' size='10px' v-if="modelValue && !nobtn" @click='$emit("update:modelValue", null)')
@@ -29,7 +29,12 @@ const props = defineProps({
   load: { type: Boolean as PropType<boolean>, default: false },
   error: { type: String as PropType<string>, default: "" },
 });
+const emit = defineEmits(["focus", "update:modelValue"]);
 const focus = ref(false);
+const onfocus = (val: boolean) => {
+  focus.value = val;
+  emit("focus", val);
+};
 const getClasses = computed(() => ({
   input_focus: focus.value,
   input_error: props.error,
@@ -57,6 +62,7 @@ const getClasses = computed(() => ({
     font-size: 13px;
     font-size: 14px;
     font-weight: 300;
+    white-space: normal;
   }
   &:hover {
     background: var(--input_hover_bg);

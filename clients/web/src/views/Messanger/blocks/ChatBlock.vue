@@ -11,9 +11,8 @@
     Message(v-for='message in filtresMessages' :key='message' :message='message')
     span(v-if='filtresMessages.length === 0') no massages...
 .chat_send
-  h3 send block
-  Input(placeholder='message')
-  Button(size='l' active) SEND
+  Input(placeholder='message' @focus="sendToggle")
+  Button(v-show='sendOpen' size='l' active) SEND
 </template>
 <script lang="ts" setup>
 import { computed, ref } from "vue";
@@ -41,6 +40,10 @@ const select = (type) => {
 const filtresMessages = computed(() =>
   props.messages.filter((msg) => selectedTypes.value.includes(msg.type))
 );
+const sendOpen = ref(false);
+const sendToggle = (e) => {
+  sendOpen.value = e;
+};
 </script>
 <style lang="scss">
 .chat {

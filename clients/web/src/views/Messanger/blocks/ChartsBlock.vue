@@ -1,5 +1,4 @@
 <template lang="pug">
-.charts_filters metrics
 .charts_list
   ChartCard(v-for='(chart, name) in charts' v-bind='chart' :name='name')
 </template>
