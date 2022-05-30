@@ -1,8 +1,8 @@
 import { App } from "vue";
-import BlockVue from "./Block.vue";
+import ModalVue from "./Modal.vue";
 
 export default {
   install(Vue: App): void {
-    Vue.component("Block", BlockVue);
+    Vue.component("Modal", ModalVue);
   },
 };

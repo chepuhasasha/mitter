@@ -3,8 +3,8 @@ import { ITheme } from "./theme.interface";
 const dark: ITheme = {
   // BACKGROUNDS
   // -- WRAPPERS
-  bg_100: "#11121B",
-  bg_200: "#171822",
+  bg_100: "#171822",
+  bg_200: "#11121B",
   bg_300: "#1F212F",
   // -- INPUT
   input_bg: "#11121B",

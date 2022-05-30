@@ -1,13 +1,5 @@
-// COMPLETE: [Input.vue]
 <template lang="pug">
-.input(
-  v-flex
-  v-y-align
-  v-padding='10'
-  v-gap='10'
-  width='100%'
-  :class='getClasses'
-  )
+.input(:class='getClasses')
   transition(name='slide-fade')
     span.input_error_text(v-if='error') {{ error }}
   Icon(v-if='icon && !load' :icon='icon')
@@ -43,8 +35,14 @@ const getClasses = computed(() => ({
   input_error: props.error,
 }));
 </script>
-<style lang="less">
+<style lang="scss">
 .input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  width: 100%;
+
   background: var(--input_bg);
   border: var(--input_border);
   border-radius: 8px;

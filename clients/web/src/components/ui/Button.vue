@@ -1,11 +1,5 @@
-// COMPLETE: [Button.vue]
 <template lang="pug">
-button.button(
-  v-flex
-  v-y-align
-  v-width='"max-content"'
-  v-height='"max-content"'
-  :class="mode")
+button.button(:class="mode")
   slot
   Icon(v-if='icon && !load' pointer :icon='icon')
   Loader(v-if='load' size='14px' mode='ring')
@@ -13,12 +7,12 @@ button.button(
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import type { IconName } from "../interfaces/icons";
+import type { IconName } from "@/types/icons";
 
 const props = defineProps<{
   icon?: IconName;
   load?: boolean;
-  active: boolean;
+  active?: boolean;
   size: "s" | "m" | "l";
 }>();
 
@@ -28,8 +22,12 @@ const mode = computed(() => ({
 }));
 </script>
 
-<style lang="less">
+<style lang="scss">
 .button {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: max-content;
   outline: none;
   cursor: pointer;
   background: var(--btn_bg);
@@ -40,10 +38,10 @@ const mode = computed(() => ({
     color: var(--text_100);
     border: 2px solid var(--btn_active);
   }
-  &:focus {
-    border: 2px solid var(--btn_active);
-    color: var(--btn_active);
-  }
+  // &:focus {
+  //   border: 2px solid var(--btn_active);
+  //   color: var(--btn_active);
+  // }
   &_active {
     color: var(--btn_active);
     background: var(--btn_active_bg);

@@ -17,10 +17,3 @@ onMounted(() => {
   window.addEventListener("resize", resize);
 });
 </script>
-<style lang="less">
-#app {
-  background: var(--bg_100);
-  width: 100vw;
-  height: 100vh;
-}
-</style>

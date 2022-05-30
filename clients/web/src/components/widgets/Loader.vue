@@ -26,7 +26,7 @@ const getSize = computed(() => ({
   maxHeight: props.size,
 }));
 </script>
-<style lang="less" scoped>
+<style lang="scss">
 .pulse {
   display: inline-block;
   position: relative;

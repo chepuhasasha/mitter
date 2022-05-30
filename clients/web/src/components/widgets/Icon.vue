@@ -7,7 +7,7 @@ svg(viewBox='0 0 14 14' :width='size' :height='size' @click='$emit("click")' :st
 import { computed } from "vue";
 import type { PropType } from "vue";
 import type { IconName } from "../interfaces/icons";
-import { icons } from "../interfaces/icons";
+import { icons } from "@/types/icons";
 
 const props = defineProps({
   icon: { type: String as PropType<IconName>, default: "error" },

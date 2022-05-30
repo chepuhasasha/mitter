@@ -1,19 +1,9 @@
 // COMPLETE: [Utilization.vue]
 <template lang="pug">
-.utilization(
-  v-flex
-  v-col
-  v-width='"100%"'
-  v-height='"max-content"'
-  v-gap='2'
-  )
+.utilization
   .utilization_name {{ name }}
   .utilization_val(:style='{color: getStyle.background }') {{ max / 100 * value }}%
-  .utilization_scale(
-    v-flex
-    v-width='"100%"'
-    v-height='"2px"'
-  )
+  .utilization_scale
     .utilization_scale_limit(:style='{width: `${max / 100 * warning}%`, background: "var(--ok_100)"}')
     .utilization_scale_limit(:style='{width: `${max / 100 * (critical - warning)}%`, background: "var(--warn_100)"}')
     .utilization_scale_limit(:style='{width: `${max / 100 * (max - critical)}%`, background: "var(--error_100)"}')
@@ -47,8 +37,15 @@ const getStyle = computed(() => {
   };
 });
 </script>
-<style lang="less">
+<style lang="scss">
 .utilization {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 213px;
+  height: max-content;
+  gap: 2px;
+  position: relative;
   &_name {
     font-size: 14px;
   }
@@ -56,15 +53,21 @@ const getStyle = computed(() => {
     font-size: 14px;
   }
   &_scale {
+    display: flex;
+    width: 100%;
+    height: 2px;
     border-radius: 2px;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
     &_limit {
       height: 2px;
+      // opacity: 0.5;
     }
   }
   &_value {
-    height: 10px;
-    width: 30%;
-    border-radius: 2px;
+    height: 6px;
+    // z-index: 1;
   }
 }
 </style>

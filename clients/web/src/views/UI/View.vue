@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from "vue";
-import { icons } from "@/components/interfaces/icons";
+import { icons } from "@/types/icons";
 import { BasePage } from "@/compositions/basePage";
 
 export default defineComponent({
@@ -57,7 +57,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="less">
+<style lang="scss">
 .ui {
   background: var(--bg_200);
   // width: 100vw;

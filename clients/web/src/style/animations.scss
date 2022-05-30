@@ -1,14 +1,32 @@
 .slide-fade {
   &-enter-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.5s ease-out;
   }
   &-leave-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.5s ease-out;
   }
 
   &-enter-from, &-leave-to {
-    transform: translateY(20px);
     opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+.blur {
+  &-enter-active {
+    transition: all 1s ease-out;
+  }
+  &-leave-active {
+    transition: all 0s ease-out;
+  }
+
+  &-enter-to,
+  &-leave-from {
+    backdrop-filter: blur(5px);
+  }
+  &-enter-from,
+  &-leave-to {
+    backdrop-filter: blur(0px);
   }
 }
 

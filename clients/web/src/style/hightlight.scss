@@ -1,16 +1,16 @@
 .highlight {
   .err {
-    background: rgba(255, 0, 0, 0.3);
     width: 100%;
+    background: rgba(255, 0, 0, 0.3);
   }
   .linenum {
     display: inline-block;
+    width: 50px;
+    margin-right: 10px;
+    font-size: 12px;
+    text-align: center;
     background: var(--bg_300);
     opacity: 0.5;
-    font-size: 12px;
-    margin-right: 10px;
-    text-align: center;
-    width: 50px;
   }
   * {
     font-family: var(--font_200);
@@ -35,19 +35,19 @@
     font-weight: 600;
   }
   blockquote {
-    border-left: 4px solid var(--text_200);
     padding: 10px;
+    border-left: 4px solid var(--text_200);
   }
   a {
     color: var(--accent_000);
   }
   table {
-    border-collapse: collapse;
     max-width: 100%;
+    border-collapse: collapse;
   }
   thead tr {
-    background: var(--contrast_200);
     font-weight: 700;
+    background: var(--contrast_200);
   }
   th {
     border: 1px solid var(--contrast_000);
@@ -60,30 +60,30 @@
     padding: 5px;
   }
   pre {
-    background: var(--contrast_100);
-    border-radius: 10px;
     width: 100%;
     padding: 10px;
+    background: var(--contrast_100);
+    border-radius: 10px;
   }
   textarea {
-    outline: none;
-    color: var(--text_100);
-    border: none;
     width: 100%;
-    background: none;
+    color: var(--text_100);
     resize: none;
-  }
-  pre code.hljs {
-    display: block;
-    overflow-x: auto;
-    padding: 1em;
-  }
-  code.hljs {
-    padding: 3px 5px;
+    background: none;
+    border: none;
+    outline: none;
   }
   .hljs {
     color: #c9d1d9;
     background: #0d1117;
+  }
+  code.hljs {
+    padding: 3px 5px;
+  }
+  pre code.hljs {
+    display: block;
+    padding: 1em;
+    overflow-x: auto;
   }
   .hljs-doctag,
   .hljs-keyword,
@@ -92,8 +92,8 @@
   .hljs-template-variable,
   .hljs-type,
   .hljs-variable.language_ {
-    color: #ff7b72;
     font-style: italic;
+    color: #ff7b72;
   }
   .hljs-title,
   .hljs-title.class_,
@@ -113,9 +113,11 @@
   .hljs-variable {
     color: #79c0ff;
   }
-  .hljs-meta .hljs-string,
   .hljs-regexp,
   .hljs-string {
+    color: #a5d6ff;
+  }
+  .hljs-meta .hljs-string {
     color: #a5d6ff;
   }
   .hljs-built_in,
@@ -137,19 +139,19 @@
     color: #c9d1d9;
   }
   .hljs-section {
-    color: #1f6feb;
     font-weight: 700;
+    color: #1f6feb;
   }
   .hljs-bullet {
     color: #f2cc60;
   }
   .hljs-emphasis {
-    color: #c9d1d9;
     font-style: italic;
+    color: #c9d1d9;
   }
   .hljs-strong {
-    color: #c9d1d9;
     font-weight: 700;
+    color: #c9d1d9;
   }
   .hljs-addition {
     color: #aff5b4;

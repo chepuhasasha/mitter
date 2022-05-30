@@ -1,14 +1,6 @@
 // COMPLETE: [Code.vue]
 <template lang="pug">
-.code.highlight(
-  v-flex
-  v-col
-  v-padding='10'
-  v-gap='10'
-  v-height='"100%"'
-  v-width='"100%"'
-  v-y-overflow='"auto"'
-  )
+.code.highlight
   pre(v-html='highlight')
   textarea(
     :rows='rows'
@@ -78,10 +70,19 @@ const rows = computed(() => {
   return highlight.value.split("\n").length - 1;
 });
 </script>
-<style lang="less">
+<style lang="scss">
 .code {
-  background: var(--bg_100);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  overflow: auto;
+  position: relative;
+  background: var(--bg_200);
   border-radius: 10px;
+  border: 2px solid var(--bg_300);
+  // width: 100%;
+  // max-width: 100%;
   pre {
     background: none;
     padding: 0;
