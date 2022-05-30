@@ -35,7 +35,8 @@ const isIn = ref(false);
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   &_header {
     display: flex;
     width: 100%;
@@ -48,8 +49,6 @@ const isIn = ref(false);
     }
   }
   &_wrapper {
-    transition: all 0.3 ease;
-    backdrop-filter: blur(0px);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -72,15 +71,15 @@ const isIn = ref(false);
 
 .modal-fade {
   &-enter-active {
-    transition: all 0.5s ease-out;
+    transition: all 0.3s ease-out;
     .modal_wrapper {
-      transition: all 0.5s ease-out;
+      transition: all 0.3s ease-out;
     }
   }
   &-leave-active {
-    transition: all 0.5s ease-out;
+    transition: all 0.3s ease-out;
     .modal_wrapper {
-      transition: all 0.5s ease-out;
+      transition: all 0.3s ease-out;
     }
   }
 
@@ -88,8 +87,9 @@ const isIn = ref(false);
   &-leave-to {
     opacity: 0;
     .modal_wrapper {
-      transform: translateX(-100px);
+      transform: scale(1.1);
     }
   }
 }
 </style>
+
