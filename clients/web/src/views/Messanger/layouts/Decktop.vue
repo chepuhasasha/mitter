@@ -1,30 +1,29 @@
 <template lang="pug">
-.messanger(v-if='props.chanel')
-  .messanger_nav
-    h3 USER
-    h3 CHANELS BLOCK
+.messanger
+  //- .messanger_nav
+  //-   h3 USER
+  //-   h3 CHANELS BLOCK
+  .messanger_chanels
+    ChanelsBlock
   .messanger_chat(:style="{width: `${chatWidth}px`}")
-    ChatBlock(:messages="props.chanel.messages")
+    ChatBlock
   WidthLimiter(v-model="chatWidth" :min='400' :max='700')
   .messanger_charts(:style="{width: `${chartWidth}px`}")
-    ChartsBlock(:messages="props.chanel.messages.filter(m => m.type === 'utilization')")
+    ChartsBlock
   WidthLimiter(v-model="chartWidth" :min='300' :max='500')
   .messanger_md
-    MDBlock(:messages="props.chanel.messages.filter(m => m.type === 'md')")
+    MDBlock
 </template>
 
 <script lang="ts" setup>
-import type { IChanel } from "@/types/chanel";
-import type { PropType } from "vue";
 import { ref } from "vue";
+import { ChanelsStore } from "@/compositions/chanelsStore";
 import ChatBlock from "../blocks/ChatBlock.vue";
 import ChartsBlock from "../blocks/ChartsBlock.vue";
 import MDBlock from "../blocks/MDBlock.vue";
+import ChanelsBlock from "../blocks/ChanelsBlock.vue";
 
-const props = defineProps({
-  chanel: { type: Object as PropType<IChanel>, require: true },
-});
-
+const { ACTIVE_CHANEL } = ChanelsStore();
 const chatWidth = ref(600);
 const chartWidth = ref(400);
 </script>
@@ -46,6 +45,12 @@ const chartWidth = ref(400);
     gap: 2px;
     flex-direction: column;
     background: var(--bg_200);
+  }
+  &_chanels {
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    width: 300px;
   }
   &_chat {
     display: flex;

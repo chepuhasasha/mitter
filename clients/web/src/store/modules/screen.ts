@@ -14,8 +14,10 @@ export const screen: Module<IScreenState, State> = {
   },
   mutations: {
     SET_SCREEN_MODE(state, size: number) {
-      if (size <= 1300) {
+      if (size <= 800) {
         state.screen = "mobile";
+      } else if (size <= 1300 && size > 800) {
+        state.screen = "tablet";
       } else {
         state.screen = "decktop";
       }

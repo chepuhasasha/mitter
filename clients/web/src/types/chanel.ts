@@ -2,6 +2,7 @@ import { IMessage } from "./message";
 
 export interface IChanel {
   id: string;
-  name: string;
+  title: string;
+  last: string | null;
   messages: IMessage[];
 }

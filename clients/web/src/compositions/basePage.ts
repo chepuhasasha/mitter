@@ -1,4 +1,5 @@
 import { key, State } from "@/store";
+import { IChanel } from "@/types/chanel";
 import { computed, ComputedRef } from "vue";
 import { Store, useStore } from "vuex";
 

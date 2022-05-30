@@ -1,14 +1,17 @@
 <template lang="pug">
 .md_list
-  MDCard(v-for='(msg, i ) in messages' :message="msg")
+  MDCard(v-for='msg in messages' :message="msg")
 </template>
 <script lang="ts" setup>
-import type { PropType } from "vue";
-import type { IMessage } from "@/types/message";
-import { computed, ref } from "vue";
+import { computed } from "vue";
+import { ChanelsStore } from "@/compositions/chanelsStore";
 
-const props = defineProps({
-  messages: { type: Object as PropType<IMessage[]>, required: true },
+const { ACTIVE_CHANEL } = ChanelsStore();
+const messages = computed(() => {
+  if (ACTIVE_CHANEL.value) {
+    return ACTIVE_CHANEL.value.messages.filter((msg) => msg.type === "md");
+  }
+  return [];
 });
 </script>
 <style lang="scss">

@@ -3,14 +3,11 @@
   ChartCard(v-for='(chart, name) in charts' v-bind='chart' :name='name')
 </template>
 <script lang="ts" setup>
-import type { PropType } from "vue";
 import type { IMessage } from "@/types/message";
 import { computed } from "vue";
+import { ChanelsStore } from "@/compositions/chanelsStore";
 
-const props = defineProps({
-  messages: { type: Object as PropType<IMessage[]>, required: true },
-});
-
+const { ACTIVE_CHANEL } = ChanelsStore();
 interface IMetrica {
   last?: IMessage;
   warning: number;
@@ -21,23 +18,28 @@ interface IMetrica {
 
 const charts = computed(() => {
   const charts: Record<string, IMetrica> = {};
-  props.messages.forEach((msg) => {
-    if (!charts[msg.props?.name]) {
-      charts[msg.props?.name] = {
-        data: props.messages
-          .filter((m) => m.props?.name === msg.props?.name)
-          .map((m) => (m.props ? m.props.value : 0)),
-        labels: props.messages
-          .filter((m) => m.props?.name === msg.props?.name)
-          .map((m) => (m.props ? m.message : "")),
-        warning: msg.props ? msg.props.warning : 0,
-        critical: msg.props ? msg.props.critical : 0,
-      };
-    }
-    if (charts[msg.props?.name]) {
-      charts[msg.props?.name].last = msg;
-    }
-  });
+  if (ACTIVE_CHANEL.value) {
+    const messages = ACTIVE_CHANEL.value.messages.filter(
+      (m) => m.type === "utilization"
+    );
+    messages.forEach((msg) => {
+      if (!charts[msg.props?.name]) {
+        charts[msg.props?.name] = {
+          data: messages
+            .filter((m) => m.props?.name === msg.props?.name)
+            .map((m) => (m.props ? m.props.value : 0)),
+          labels: messages
+            .filter((m) => m.props?.name === msg.props?.name)
+            .map((m) => (m.props ? m.message : "")),
+          warning: msg.props ? msg.props.warning : 0,
+          critical: msg.props ? msg.props.critical : 0,
+        };
+      }
+      if (charts[msg.props?.name]) {
+        charts[msg.props?.name].last = msg;
+      }
+    });
+  }
   return charts;
 });
 </script>

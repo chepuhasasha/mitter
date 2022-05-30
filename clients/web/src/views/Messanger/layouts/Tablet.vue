@@ -1,14 +1,11 @@
 <template lang="pug">
 .messanger
   .messanger_nav
-    .messanger_nav_header
-      Icon(icon='left')
-      h3 {{ ACTIVE_CHANEL?.title }}
-      Icon(icon='settings')
     .messanger_nav_blocks
       Button(@click="activeBlock = 'LOG'" size='m' :active="activeBlock === 'LOG'") LOG
       Button(@click="activeBlock = 'CHARTS'" size='m' :active="activeBlock === 'CHARTS'") CHARTS
       Button(@click="activeBlock = 'MD'" size='m' :active="activeBlock === 'MD'") MD
+    ChanelsBlock
   .messanger_block(v-show="activeBlock === 'LOG'")
     ChatBlock
   .messanger_block(v-show="activeBlock === 'CHARTS'")
@@ -23,15 +20,15 @@ import { ChanelsStore } from "@/compositions/chanelsStore";
 import ChatBlock from "../blocks/ChatBlock.vue";
 import ChartsBlock from "../blocks/ChartsBlock.vue";
 import MDBlock from "../blocks/MDBlock.vue";
+import ChanelsBlock from "../blocks/ChanelsBlock.vue";
 
 const { ACTIVE_CHANEL } = ChanelsStore();
-
 const activeBlock = ref("LOG");
 </script>
 <style lang="scss" scoped>
 .messanger {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100vw;
   height: 100vh;
   min-width: 100vw;
@@ -43,10 +40,10 @@ const activeBlock = ref("LOG");
     display: flex;
     gap: 10px;
     flex-direction: column;
-    width: 100%;
+    width: 300px;
     // min-height: 200px;
     // max-height: 200px;
-    padding: 40px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
     background: var(--bg_100);
     &_header {
       padding: 0 20px;
@@ -65,8 +62,8 @@ const activeBlock = ref("LOG");
     display: flex;
     gap: 2px;
     flex-direction: column;
-    width: 100%;
-    height: calc(100% - 129px);
+    // width: 100%;
+    width: calc(100% - 302px);
   }
 }
 </style>

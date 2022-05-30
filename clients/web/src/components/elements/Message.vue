@@ -47,11 +47,11 @@ const time = computed(() => {
 });
 
 const msg = ref<HTMLElement | null>(null);
-onMounted(() => {
-  if (msg.value) {
-    msg.value.scrollIntoView();
-  }
-});
+// onMounted(() => {
+//   if (msg.value) {
+//     msg.value.scrollIntoView();
+//   }
+// });
 </script>
 <style lang="scss">
 .message {

@@ -1,14 +1,26 @@
 .slide-fade {
-  &-enter-active {
-    transition: all 0.5s ease-out;
-  }
+  &-move,
+  &-enter-active,
   &-leave-active {
-    transition: all 0.5s ease-out;
+    transition: all 0.4s ease-out;
   }
-
-  &-enter-from, &-leave-to {
+  
+  &-enter-from {
     opacity: 0;
     transform: translateX(-100px);
+  }
+  
+  &-leave-to {
+    opacity: 0;
+  }
+  &-leave-active {
+    // position: relative;
+    // height: 0px;
+    // top:0;
+    // left: 0;
+    // position: absolute;
+    // overflow: hidden;
+  //   max-width: 100px;
   }
 }
 
