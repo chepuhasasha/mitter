@@ -2,9 +2,9 @@
 .messanger
   .messanger_nav
     .messanger_nav_blocks
-      Button(@click="activeBlock = 'LOG'" size='m' :active="activeBlock === 'LOG'") LOG
-      Button(@click="activeBlock = 'CHARTS'" size='m' :active="activeBlock === 'CHARTS'") CHARTS
-      Button(@click="activeBlock = 'MD'" size='m' :active="activeBlock === 'MD'") MD
+      Button(@click="activeBlock = 'LOG'" size='s' :active="activeBlock === 'LOG'") LOG
+      Button(@click="activeBlock = 'CHARTS'" size='s' :active="activeBlock === 'CHARTS'") CHARTS
+      Button(@click="activeBlock = 'MD'" size='s' :active="activeBlock === 'MD'") MD
     ChanelsBlock
   .messanger_block(v-show="activeBlock === 'LOG'")
     ChatBlock
@@ -38,13 +38,9 @@ const activeBlock = ref("LOG");
 
   &_nav {
     display: flex;
-    gap: 10px;
+    gap: 2px;
     flex-direction: column;
     width: 300px;
-    // min-height: 200px;
-    // max-height: 200px;
-    padding: 10px 10px 10px 10px;
-    background: var(--bg_100);
     &_header {
       padding: 0 20px;
       display: flex;
@@ -54,6 +50,8 @@ const activeBlock = ref("LOG");
       justify-content: space-between;
     }
     &_blocks {
+      background: var(--bg_200);
+      padding: 10px;
       display: flex;
       gap: 10px;
     }

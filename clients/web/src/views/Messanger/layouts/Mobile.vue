@@ -2,13 +2,15 @@
 .messanger
   .messanger_nav
     .messanger_nav_header
-      Icon(icon='left')
+      Button(size='m' icon='left' @click='activeBlock = "CHANELS"')
       h3 {{ ACTIVE_CHANEL?.title }}
-      Icon(icon='settings')
-    .messanger_nav_blocks
+      Button(size='m' icon='settings')
+    .messanger_nav_blocks(v-if="activeBlock != 'CHANELS'")
       Button(@click="activeBlock = 'LOG'" size='m' :active="activeBlock === 'LOG'") LOG
       Button(@click="activeBlock = 'CHARTS'" size='m' :active="activeBlock === 'CHARTS'") CHARTS
       Button(@click="activeBlock = 'MD'" size='m' :active="activeBlock === 'MD'") MD
+  .messanger_block(v-show="activeBlock === 'CHANELS'")
+    ChanelsBlock
   .messanger_block(v-show="activeBlock === 'LOG'")
     ChatBlock
   .messanger_block(v-show="activeBlock === 'CHARTS'")
@@ -18,15 +20,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { ChanelsStore } from "@/compositions/chanelsStore";
 import ChatBlock from "../blocks/ChatBlock.vue";
 import ChartsBlock from "../blocks/ChartsBlock.vue";
 import MDBlock from "../blocks/MDBlock.vue";
+import ChanelsBlock from "../blocks/ChanelsBlock.vue";
 
 const { ACTIVE_CHANEL } = ChanelsStore();
 
 const activeBlock = ref("LOG");
+
+watch(
+  () => ACTIVE_CHANEL.value,
+  () => {
+    activeBlock.value = "LOG";
+  }
+);
 </script>
 <style lang="scss" scoped>
 .messanger {
@@ -49,7 +59,6 @@ const activeBlock = ref("LOG");
     padding: 40px 10px 10px 10px;
     background: var(--bg_100);
     &_header {
-      padding: 0 20px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -66,7 +75,7 @@ const activeBlock = ref("LOG");
     gap: 2px;
     flex-direction: column;
     width: 100%;
-    height: calc(100% - 129px);
+    height: calc(100% - 152px);
   }
 }
 </style>

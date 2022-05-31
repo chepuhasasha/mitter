@@ -7,25 +7,20 @@
   Button(size='s' @click="select('json')" :active='selectedTypes.includes("json")') JSON
   Button(size='s' @click="select('utilization')" :active='selectedTypes.includes("utilization")') UTILIZATION
 //- .chat_messages(ref='list')
-transition-group.chat_messages(
-  tag='div'
-  :css='false'
-  @leave="onLeave"
-  @after-enter="onAfterEnter"
-)
+//- transition-group.chat_messages(
+.chat_messages
   Message(
     v-for='(message, i) in filtresMessages'
     :key='message' :message='message'
     :data-index='i'
   )
   span(v-if='filtresMessages.length === 0') no massages...
-.chat_send(v-if="ACTIVE_CHANEL")
-  Input(placeholder='message' @focus="sendToggle")
-  Button(v-show='sendOpen' size='l' active) SEND
+SendBlock
 </template>
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { ChanelsStore } from "@/compositions/chanelsStore";
+import SendBlock from "./SendBlock.vue";
 import gsap from "gsap";
 
 const { ACTIVE_CHANEL } = ChanelsStore();
@@ -53,27 +48,23 @@ const filtresMessages = computed(() => {
   return [];
 });
 
-const sendOpen = ref(false);
-const sendToggle = (e) => {
-  sendOpen.value = e;
-};
-const onLeave = (el: HTMLElement, done: undefined) => {
-  gsap.to(el, {
-    padding: 0,
-    opacity: 0,
-    height: 0,
-    scale: 0,
-    marginTop: 0,
-    marginBottom: 0,
-    delay: el.dataset.index * 0.05,
-    onComplete: done,
-  });
-};
-const onAfterEnter = (el: HTMLElement) => {
-  if (el.dataset.index == filtresMessages.value.length - 1) {
-    el.scrollIntoView();
-  }
-};
+// const onLeave = (el: HTMLElement, done: () => void) => {
+//   gsap.to(el, {
+//     padding: 0,
+//     opacity: 0,
+//     height: 0,
+//     scale: 0,
+//     marginTop: 0,
+//     marginBottom: 0,
+//     delay: +(el.dataset.index as string) * 0.05,
+//     onComplete: done,
+//   });
+// };
+// const onAfterEnter = (el: HTMLElement) => {
+//   if (+(el.dataset.index as string) === filtresMessages.value.length - 1) {
+//     el.scrollIntoView();
+//   }
+// };
 </script>
 <style lang="scss">
 .chat {
@@ -86,6 +77,9 @@ const onAfterEnter = (el: HTMLElement) => {
     height: max-content;
     flex: 0 0 auto;
     min-height: max-content;
+    &::-webkit-scrollbar {
+      height: 0px;
+    }
   }
   &_messages {
     display: flex;
@@ -98,13 +92,6 @@ const onAfterEnter = (el: HTMLElement) => {
     padding: 10px;
     overflow: auto;
     background: var(--bg_200);
-  }
-  &_send {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    padding: 10px;
-    background: var(--bg_100);
   }
 }
 </style>

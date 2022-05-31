@@ -22,7 +22,10 @@ import type { PropType } from "vue";
 import type { IconName } from "../interfaces/icons";
 
 const props = defineProps({
-  modelValue: { type: String as PropType<string | null>, default: null },
+  modelValue: {
+    type: [String, Number] as PropType<string | number | null>,
+    default: null,
+  },
   title: { type: String as PropType<string>, default: "" },
   icon: { type: String as PropType<IconName | null>, default: null },
   nobtn: { type: Boolean as PropType<boolean>, default: false },

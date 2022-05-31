@@ -42,6 +42,7 @@ const chartWidth = ref(400);
     display: flex;
     width: 300px;
     min-width: 300px;
+    max-width: 300px;
     gap: 2px;
     flex-direction: column;
     background: var(--bg_200);
@@ -49,6 +50,8 @@ const chartWidth = ref(400);
   &_chanels {
     display: flex;
     gap: 2px;
+    min-width: 300px;
+    max-width: 300px;
     flex-direction: column;
     width: 300px;
   }
