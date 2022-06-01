@@ -1,0 +1,15 @@
+{
+  "name": "@mitter/js",
+  "version": "0.0.1",
+  "description": "Mittert js client",
+  "types": "./dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashachepuha/mitter.git",
+    "directory": "packages/js"
+  },
+  "license": "ISC"
+}

@@ -4,7 +4,8 @@
   "description": "Mitter",
   "workspaces": [
     "./packages/api",
-    "./packages/types"
+    "./packages/types",
+    "./packages/js"
   ],
   "scripts": {},
   "repository": {
