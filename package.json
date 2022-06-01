@@ -1,0 +1,22 @@
+{
+  "name": "mitter",
+  "version": "0.0.1",
+  "description": "Mitter",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashachepuha/mitter.git"
+  },
+  "keywords": [
+    "mitter"
+  ],
+  "author": {
+    "name": "Sergey Batukov",
+    "email": "sashachepuha@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sashachepuha/mitter/issues"
+  },
+  "homepage": "https://github.com/sashachepuha/mitter#readme"
+}
