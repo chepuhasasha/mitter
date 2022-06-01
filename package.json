@@ -2,6 +2,9 @@
   "name": "mitter",
   "version": "0.0.1",
   "description": "Mitter",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {},
   "repository": {
     "type": "git",
