@@ -1,0 +1,15 @@
+{
+  "name": "@mitter/types",
+  "version": "0.0.1",
+  "description": "Mittert types",
+  "types": "./dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashachepuha/mitter.git",
+    "directory": "packages/types"
+  },
+  "license": "ISC"
+}
