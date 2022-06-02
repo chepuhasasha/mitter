@@ -14,12 +14,18 @@ export declare type MessageNameType =
   | "utilization";
 export interface IMessage {
   id: string;
-  type: MessageNameType;
+  type: "info" | "ok" | "warn" | "error";
   text: string;
   time: number;
   nickname: string;
+  props?: null;
 }
-export interface IUtilizationMessage extends IMessage {
+export interface IUtilizationMessage {
+  id: string;
+  type: "utilization";
+  text: string;
+  time: number;
+  nickname: string;
   props: {
     value: number;
     max: number;
@@ -27,7 +33,12 @@ export interface IUtilizationMessage extends IMessage {
     critical: number;
   };
 }
-export interface ICodeMessage extends IMessage {
+export interface ICodeMessage {
+  id: string;
+  type: "md" | "json";
+  text: string;
+  time: number;
+  nickname: string;
   props: {
     code: string;
   };
