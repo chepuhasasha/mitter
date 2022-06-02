@@ -8,6 +8,16 @@ export declare type MessageNameType =
   | "json"
   | "utilization";
 
+export interface UtilizationProps {
+  value: number;
+  max: number;
+  warning: number;
+  critical: number;
+}
+export interface CodeProps {
+  code: string;
+}
+
 // CLIENT TYPES
 // MESSAGES
 export interface ClientSimpleMessage {
@@ -27,12 +37,7 @@ export interface ClientUtilizationMessage {
   type: "utilization";
   nickname: string;
   text: string;
-  props: {
-    value: number;
-    max: number;
-    warning: number;
-    critical: number;
-  };
+  props: UtilizationProps;
 }
 
 export declare type ClientMessage =
