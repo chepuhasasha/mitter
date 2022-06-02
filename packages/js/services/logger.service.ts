@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import {
   ICodeMessage,
   IMessage,
@@ -24,15 +25,37 @@ export default class Logger {
           message.nickname,
           this.colors.default
         );
+        result += this.utilization({ ...message.props });
+        break;
+      case "json" || "md":
+        result += this.header(
+          message.type,
+          message.nickname,
+          this.colors.default
+        );
+        result += message.props.code;
         break;
 
       default:
+        result += this.header(
+          message.type,
+          message.nickname,
+          this.colors[message.type]
+        );
         break;
     }
+    result += message.text;
     console.log(result);
   }
   header(type: MessageNameType, nickname: string, color: string): string {
-    return `${type} [${nickname}]`;
+    return `●← ●→ ${chalk.hex(color)(type.toUpperCase())} ${chalk.gray(
+      "[" + nickname + "]"
+    )}\n`;
   }
-  utilization() {}
+  utilization(options: {
+    value: number;
+    max: number;
+    warning: number;
+    critical: number;
+  }) {}
 }
