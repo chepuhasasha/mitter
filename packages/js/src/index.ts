@@ -4,6 +4,7 @@ import chalk from "chalk";
 import {
   CodeProps,
   MessageNameType,
+  ServerMessage,
   UtilizationProps,
 } from "@mitter/types/src";
 export default class Mitter {
@@ -66,6 +67,13 @@ export default class Mitter {
 
     return this;
   }
+  on(event: MessageNameType, cb: (data: ServerMessage) => unknown) {
+    this.socket.on(`event_${event}`, (data: ServerMessage) => {
+      // this.logger.log(...)
+      console.log(data);
+      cb(data);
+    });
+  }
 
   emit(type: "ok" | "info" | "warn" | "error", message: string): void;
   emit(type: "utilization", message: string, options: UtilizationProps): void;
@@ -75,16 +83,30 @@ export default class Mitter {
     message: string,
     options?: UtilizationProps | CodeProps
   ): void {
-    // const messageHead = {
-    //   type,
-    //   nickname: this.nickname,
-    //   text: message
-    // };
-    // switch (type) {
-    //   case "utilization":
-    //     break;
-    //   default:
-    //     break;
-    // }
+    const messageHead = {
+      type,
+      nickname: this.nickname,
+      text: message,
+    };
+    if (options) {
+      this.socket.emit("message", {
+        ...messageHead,
+        props: options,
+      });
+    }
+    this.socket.emit("message", messageHead);
   }
 }
+
+const m = new Mitter({
+  token: "1:123",
+  nickname: "bot",
+});
+
+m.emit("error", "msg");
+m.emit("utilization", "msg", {
+  value: 20,
+  max: 100,
+  warning: 80,
+  critical: 90,
+});
