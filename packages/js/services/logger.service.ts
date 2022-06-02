@@ -1,10 +1,5 @@
 import chalk from "chalk";
-import {
-  ICodeMessage,
-  IMessage,
-  IUtilizationMessage,
-  MessageNameType,
-} from "@mitter/types/src";
+import { MessageNameType, MessageType } from "@mitter/types/src";
 
 export default class Logger {
   private colors = {
@@ -16,7 +11,7 @@ export default class Logger {
   };
   constructor() {}
 
-  log(message: IMessage | ICodeMessage | IUtilizationMessage) {
+  log(message: MessageType) {
     let result = "";
     switch (message.type) {
       case "utilization":

@@ -12,7 +12,7 @@ export declare type MessageNameType =
   | "md"
   | "json"
   | "utilization";
-export interface IMessage {
+export interface ISimpleMessage {
   id: string;
   type: "info" | "ok" | "warn" | "error";
   text: string;
@@ -43,6 +43,11 @@ export interface ICodeMessage {
     code: string;
   };
 }
+
+export declare type MessageType =
+  | ISimpleMessage
+  | ICodeMessage
+  | IUtilizationMessage;
 export interface IRoom {
   id: string;
   owner_id: string;

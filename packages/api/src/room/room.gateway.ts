@@ -4,7 +4,7 @@ import {
   WsResponse,
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
-import { IMessage, ICodeMessage, IUtilizationMessage } from '@mitter/types';
+import { MessageType } from '@mitter/types';
 import { UseGuards } from '@nestjs/common';
 import { RoomGuard } from './room.guard';
 
@@ -21,10 +21,7 @@ export class RoomGateway {
 
   @UseGuards(RoomGuard)
   @SubscribeMessage('message')
-  onMessage(
-    socket: Socket,
-    data: IMessage | ICodeMessage | IUtilizationMessage,
-  ): WsResponse<IMessage | ICodeMessage | IUtilizationMessage> {
+  onMessage(socket: Socket, data: MessageType): WsResponse<MessageType> {
     socket.rooms.forEach((room) => {
       socket.to(room).emit(`event_${data.type}`, data);
     });
