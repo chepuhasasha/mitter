@@ -10,10 +10,11 @@ export declare type MessageNameType =
   | "warn"
   | "error"
   | "md"
-  | "json";
+  | "json"
+  | "utilization";
 export interface IMessage {
-  id: MessageNameType;
-  type: string;
+  id: string;
+  type: MessageNameType;
   text: string;
   time: number;
   nickname: string;
