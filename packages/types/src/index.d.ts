@@ -9,6 +9,7 @@ export declare type MessageNameType =
   | "utilization";
 
 export interface UtilizationProps {
+  name: string;
   value: number;
   max: number;
   warning: number;
@@ -76,12 +77,7 @@ export interface ServerUtilizationMessage {
   type: "utilization";
   nickname: string;
   text: string;
-  props: {
-    value: number;
-    max: number;
-    warning: number;
-    critical: number;
-  };
+  props: UtilizationProps;
 }
 
 export declare type ServerMessage =

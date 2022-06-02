@@ -67,9 +67,36 @@ class Mitter {
             text: message,
         };
         if (options) {
-            this.socket.emit("message", Object.assign(Object.assign({}, messageHead), { props: options }));
+            this.socket.emit("message", Object.assign(Object.assign({}, messageHead), { props: options }), (data) => {
+                this.logger.log(Object.assign(Object.assign({}, messageHead), { props: options }));
+            });
         }
-        this.socket.emit("message", messageHead);
+        else {
+            this.socket.emit("message", messageHead, (data) => {
+                this.logger.log(messageHead);
+            });
+        }
+        // if (type === "utilization") {
+        //   this.logger.log({
+        //     type: "utilization",
+        //     nickname: this.nickname,
+        //     text: message,
+        //     props: options as UtilizationProps,
+        //   });
+        // } else if (type === "md" || type === "json") {
+        //   this.logger.log({
+        //     type: type,
+        //     nickname: this.nickname,
+        //     text: message,
+        //     props: options as CodeProps,
+        //   });
+        // } else {
+        //   this.logger.log({
+        //     type: type,
+        //     nickname: this.nickname,
+        //     text: message,
+        //   });
+        // }
     }
 }
 exports.default = Mitter;

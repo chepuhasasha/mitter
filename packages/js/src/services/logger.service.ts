@@ -45,14 +45,29 @@ export default class Logger {
     console.log(result);
   }
   header(type: MessageNameType, nickname: string, color: string): string {
-    return `●← ●→ ${chalk.hex(color)(type.toUpperCase())} ${chalk.gray(
+    return `${chalk.hex(color)(type.toUpperCase())} ${chalk.gray(
       "[" + nickname + "]"
     )}\n`;
   }
   utilization(options: {
+    name: string;
     value: number;
     max: number;
     warning: number;
     critical: number;
-  }) {}
+  }) {
+    let color = this.colors.ok;
+    if (options.value >= options.warning) {
+      color = this.colors.warn;
+    }
+    if (options.value >= options.critical) {
+      color = this.colors.error;
+    }
+    const percent = Math.floor((options.max / 100) * options.value);
+    const size = 20;
+    const val = Math.floor((size / 100) * percent);
+    return `${chalk.hex(color)(
+      options.name + " " + "█".repeat(val) + "░".repeat(size - val)
+    )} ${chalk.hex(color)(percent + "%")}\n`;
+  }
 }

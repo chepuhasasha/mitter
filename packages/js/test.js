@@ -8,11 +8,10 @@ const m = new Mitter({
 
 // m.emit("error", "msg");
 m.emit("utilization", "msg", {
+  name: "CPU",
   value: 20,
   max: 100,
   warning: 80,
   critical: 90,
 });
-m.on("error", (data) => {
-  console.log(data);
-});
+m.emit("error", "test");

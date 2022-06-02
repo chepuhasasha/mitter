@@ -5,9 +5,10 @@ export default class Logger {
     log(message: ClientMessage): void;
     header(type: MessageNameType, nickname: string, color: string): string;
     utilization(options: {
+        name: string;
         value: number;
         max: number;
         warning: number;
         critical: number;
-    }): void;
+    }): string;
 }

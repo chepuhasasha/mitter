@@ -39,9 +39,21 @@ class Logger {
         console.log(result);
     }
     header(type, nickname, color) {
-        return `●← ●→ ${chalk_1.default.hex(color)(type.toUpperCase())} ${chalk_1.default.gray("[" + nickname + "]")}\n`;
+        return `${chalk_1.default.hex(color)(type.toUpperCase())} ${chalk_1.default.gray("[" + nickname + "]")}\n`;
     }
-    utilization(options) { }
+    utilization(options) {
+        let color = this.colors.ok;
+        if (options.value >= options.warning) {
+            color = this.colors.warn;
+        }
+        if (options.value >= options.critical) {
+            color = this.colors.error;
+        }
+        const percent = Math.floor((options.max / 100) * options.value);
+        const size = 20;
+        const val = Math.floor((size / 100) * percent);
+        return `${chalk_1.default.hex(color)(options.name + " " + "█".repeat(val) + "░".repeat(size - val))} ${chalk_1.default.hex(color)(percent + "%")}\n`;
+    }
 }
 exports.default = Logger;
 //# sourceMappingURL=logger.service.js.map

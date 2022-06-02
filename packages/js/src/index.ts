@@ -2,6 +2,7 @@ import Logger from "./services/logger.service";
 import { io, Socket } from "socket.io-client";
 import chalk from "chalk";
 import {
+  ClientMessage,
   CodeProps,
   MessageNameType,
   ServerMessage,
@@ -89,11 +90,44 @@ export default class Mitter {
       text: message,
     };
     if (options) {
-      this.socket.emit("message", {
-        ...messageHead,
-        props: options,
+      this.socket.emit(
+        "message",
+        {
+          ...messageHead,
+          props: options,
+        },
+        () => {
+          this.logger.log({
+            ...messageHead,
+            props: options,
+          } as ClientMessage);
+        }
+      );
+    } else {
+      this.socket.emit("message", messageHead, (data: ClientMessage) => {
+        this.logger.log(messageHead as ClientMessage);
       });
     }
-    this.socket.emit("message", messageHead);
+    // if (type === "utilization") {
+    //   this.logger.log({
+    //     type: "utilization",
+    //     nickname: this.nickname,
+    //     text: message,
+    //     props: options as UtilizationProps,
+    //   });
+    // } else if (type === "md" || type === "json") {
+    //   this.logger.log({
+    //     type: type,
+    //     nickname: this.nickname,
+    //     text: message,
+    //     props: options as CodeProps,
+    //   });
+    // } else {
+    //   this.logger.log({
+    //     type: type,
+    //     nickname: this.nickname,
+    //     text: message,
+    //   });
+    // }
   }
 }

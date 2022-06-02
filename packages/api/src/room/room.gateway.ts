@@ -10,6 +10,7 @@ import { RoomGuard } from './room.guard';
 
 @WebSocketGateway()
 export class RoomGateway {
+  @UseGuards(RoomGuard)
   handleConnection(socket: Socket): WsResponse<string> {
     const room = socket.handshake.auth.token.split(':')[0];
     if (room) {
@@ -28,6 +29,7 @@ export class RoomGateway {
       id: '123',
       time: Date.now(),
     };
+    console.log(data);
     socket.rooms.forEach((room) => {
       socket.to(room).emit(`event_${data.type}`, result);
     });
