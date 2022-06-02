@@ -40,5 +40,5 @@ export interface IRoom {
     name: string;
     hash: string;
   }[];
-  messages: [IMessage | IUtilizationMessage | ICodeMessage];
+  messages: (IMessage | IUtilizationMessage | ICodeMessage)[];
 }
