@@ -35,9 +35,27 @@ export default class Mitter {
         nickname: "Mitter",
       });
     });
-    this.socket.once("room_connected", (data) => {});
-    this.socket.on("disconnect", () => {});
-    this.socket.on("connect_error", () => {});
+    this.socket.once("room_connected", (data: string) => {
+      this.logger.log({
+        type: "ok",
+        text: `Connected to room: ${data}`,
+        nickname: "Mitter",
+      });
+    });
+    this.socket.on("disconnect", () => {
+      this.logger.log({
+        type: "error",
+        text: "Disconnected...",
+        nickname: "Mitter",
+      });
+    });
+    this.socket.on("connect_error", () => {
+      this.logger.log({
+        type: "error",
+        text: "Connection failed...",
+        nickname: "Mitter",
+      });
+    });
     this.socket.on("error", (error: string) => {
       this.logger.log({
         type: "error",
