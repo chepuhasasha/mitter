@@ -1,8 +1,8 @@
 import { CanActivate, Injectable } from '@nestjs/common';
-import { RoomService } from '../room/room.service';
+import { RoomService } from './room.service';
 
 @Injectable()
-export class MessangerGuard implements CanActivate {
+export class RoomGuard implements CanActivate {
   constructor(private roomService: RoomService) {}
 
   async canActivate(context: any): Promise<any> {

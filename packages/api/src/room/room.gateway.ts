@@ -6,10 +6,10 @@ import {
 import { Socket } from 'socket.io';
 import { IMessage, ICodeMessage, IUtilizationMessage } from '@mitter/types';
 import { UseGuards } from '@nestjs/common';
-import { MessangerGuard } from './guards/messanger.guard';
+import { RoomGuard } from './room.guard';
 
 @WebSocketGateway()
-export class MessangerGateway {
+export class RoomGateway {
   handleConnection(socket: Socket): WsResponse<string> {
     const room = socket.handshake.auth.token.split(':')[0];
     if (room) {
@@ -19,7 +19,7 @@ export class MessangerGateway {
     return { event: 'error', data: 'Invalid token' };
   }
 
-  @UseGuards(MessangerGuard)
+  @UseGuards(RoomGuard)
   @SubscribeMessage('message')
   onMessage(
     socket: Socket,
