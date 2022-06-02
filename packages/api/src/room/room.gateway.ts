@@ -4,7 +4,7 @@ import {
   WsResponse,
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
-import { ClientMessage } from '@mitter/types';
+import { ClientMessage, ServerMessage } from '@mitter/types';
 import { UseGuards } from '@nestjs/common';
 import { RoomGuard } from './room.guard';
 
@@ -14,6 +14,7 @@ export class RoomGateway {
     const room = socket.handshake.auth.token.split(':')[0];
     if (room) {
       socket.join(room);
+      socket.emit('room_connected', room);
       return { event: 'room_connected', data: room };
     }
     return { event: 'error', data: 'Invalid token' };
@@ -21,10 +22,15 @@ export class RoomGateway {
 
   @UseGuards(RoomGuard)
   @SubscribeMessage('message')
-  onMessage(socket: Socket, data: ClientMessage): WsResponse<ClientMessage> {
+  onMessage(socket: Socket, data: ClientMessage): WsResponse<ServerMessage> {
+    const result = {
+      ...data,
+      id: '123',
+      time: Date.now(),
+    };
     socket.rooms.forEach((room) => {
-      socket.to(room).emit(`event_${data.type}`, data);
+      socket.to(room).emit(`event_${data.type}`, result);
     });
-    return { event: `event_${data.type}`, data };
+    return { event: `event_${data.type}`, data: result };
   }
 }

@@ -41,7 +41,7 @@ export default class Logger {
         );
         break;
     }
-    result += message.text;
+    result += message.text + "\n";
     console.log(result);
   }
   header(type: MessageNameType, nickname: string, color: string): string {

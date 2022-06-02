@@ -97,16 +97,3 @@ export default class Mitter {
     this.socket.emit("message", messageHead);
   }
 }
-
-const m = new Mitter({
-  token: "1:123",
-  nickname: "bot",
-});
-
-m.emit("error", "msg");
-m.emit("utilization", "msg", {
-  value: 20,
-  max: 100,
-  warning: 80,
-  critical: 90,
-});

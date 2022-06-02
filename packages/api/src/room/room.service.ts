@@ -1,9 +1,9 @@
-import { IRoom } from '@mitter/types/src';
+import { ServerRoom } from '@mitter/types/src';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class RoomService {
-  private rooms: IRoom[] = [
+  private rooms: ServerRoom[] = [
     {
       id: '1',
       name: 'Test 1',
@@ -41,7 +41,7 @@ export class RoomService {
     return false;
   }
 
-  async findRoomById(id: string): Promise<IRoom> {
+  async findRoomById(id: string): Promise<ServerRoom> {
     return this.rooms.find((room) => room.id === id);
   }
 }
