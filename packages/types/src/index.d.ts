@@ -1,9 +1,4 @@
-export interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  hash: string;
-}
+// COMMON TYPES
 export declare type MessageNameType =
   | "info"
   | "ok"
@@ -12,20 +7,26 @@ export declare type MessageNameType =
   | "md"
   | "json"
   | "utilization";
-export interface ISimpleMessage {
-  id: string;
-  type: "info" | "ok" | "warn" | "error";
-  text: string;
-  time: number;
+
+// CLIENT TYPES
+// MESSAGES
+export interface ClientSimpleMessage {
+  type: "ok" | "info" | "warn" | "error";
   nickname: string;
-  props?: null;
+  text: string;
 }
-export interface IUtilizationMessage {
-  id: string;
-  type: "utilization";
-  text: string;
-  time: number;
+export interface ClientCodeMessage {
+  type: "md" | "json";
   nickname: string;
+  text: string;
+  props: {
+    code: string;
+  };
+}
+export interface ClientUtilizationMessage {
+  type: "utilization";
+  nickname: string;
+  text: string;
   props: {
     value: number;
     max: number;
@@ -33,22 +34,58 @@ export interface IUtilizationMessage {
     critical: number;
   };
 }
-export interface ICodeMessage {
+
+export declare type ClientMessage =
+  | ClientSimpleMessage
+  | ClientCodeMessage
+  | ClientUtilizationMessage;
+
+// ROOM
+export interface CreateRoom {
+  owner_id: string;
+  name: string;
+}
+
+// SERVER TYPES
+// MESSAGES
+export interface ServerSimpleMessage {
   id: string;
-  type: "md" | "json";
-  text: string;
   time: number;
+  type: "ok" | "info" | "warn" | "error";
   nickname: string;
+  text: string;
+}
+export interface ServerCodeMessage {
+  id: string;
+  time: number;
+  type: "md" | "json";
+  nickname: string;
+  text: string;
   props: {
     code: string;
   };
 }
+export interface ServerUtilizationMessage {
+  id: string;
+  time: number;
+  type: "utilization";
+  nickname: string;
+  text: string;
+  props: {
+    value: number;
+    max: number;
+    warning: number;
+    critical: number;
+  };
+}
 
-export declare type MessageType =
-  | ISimpleMessage
-  | ICodeMessage
-  | IUtilizationMessage;
-export interface IRoom {
+export declare type ServerMessage =
+  | ServerSimpleMessage
+  | ServerCodeMessage
+  | ServerUtilizationMessage;
+
+//  ROOM
+export interface ServerRoom {
   id: string;
   owner_id: string;
   name: string;
@@ -57,5 +94,5 @@ export interface IRoom {
     name: string;
     hash: string;
   }[];
-  messages: (IMessage | IUtilizationMessage | ICodeMessage)[];
+  messages: ServerMessage[];
 }

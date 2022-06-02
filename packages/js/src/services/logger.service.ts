@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { MessageNameType, MessageType } from "@mitter/types/src";
+import { MessageNameType, ClientMessage } from "@mitter/types/src";
 
 export default class Logger {
   private colors = {
@@ -11,7 +11,7 @@ export default class Logger {
   };
   constructor() {}
 
-  log(message: MessageType) {
+  log(message: ClientMessage) {
     let result = "";
     switch (message.type) {
       case "utilization":
@@ -22,12 +22,12 @@ export default class Logger {
         );
         result += this.utilization({ ...message.props });
         break;
-      case "json" || "md":
-        result += this.header(
-          message.type,
-          message.nickname,
-          this.colors.default
-        );
+      case "json":
+        result += this.header("json", message.nickname, this.colors.default);
+        result += message.props.code;
+        break;
+      case "md":
+        result += this.header("md", message.nickname, this.colors.default);
         result += message.props.code;
         break;
 
@@ -36,6 +36,8 @@ export default class Logger {
           message.type,
           message.nickname,
           this.colors[message.type]
+            ? this.colors[message.type]
+            : this.colors.default
         );
         break;
     }
